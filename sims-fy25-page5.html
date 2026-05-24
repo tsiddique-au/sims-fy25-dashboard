@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 5: Balance Sheet & Cash Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --white:#FFFFFF;--surface2:#EDF0F5;--navy:#0D2B4E;--teal:#2E7FAA;--teal-bg:#EBF5FB;
+  --gold:#C8932A;--gold-bg:#FDF6E8;--green:#1A7A4A;--green-bg:#EAF5EE;
+  --red:#B83232;--red-bg:#FDF0F0;--amber:#C87020;--amber-bg:#FEF5E8;
+  --purple:#6D3FBB;--slate:#5F7F9A;--charcoal:#2C3E50;--grey:#8898AA;--border:#DDE3EC;
+  --font-head:'Syne',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#E8EBF0;font-family:var(--font-body);color:var(--charcoal);
+     display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px}
+.page{width:1122px;height:794px;background:var(--white);display:flex;
+      flex-direction:column;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18)}
+
+/* HEADER */
+.page-header{background:var(--navy);height:44px;min-height:44px;display:flex;
+             align-items:center;padding:0 28px;justify-content:space-between;flex-shrink:0}
+.ph-brand{display:flex;align-items:baseline;gap:10px}
+.ph-brand-name{font-family:var(--font-head);font-weight:700;font-size:13px;color:#fff;letter-spacing:.04em}
+.ph-brand-sub{font-family:var(--font-body);font-size:10px;color:#4DA0C8}
+.ph-centre{font-family:var(--font-head);font-weight:700;font-size:15px;color:#fff;letter-spacing:.2em;text-transform:uppercase}
+.ph-right{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.5);text-align:right}
+
+/* KPI STRIP */
+.kpi-strip{background:var(--surface2);border-bottom:2px solid var(--border);padding:0 24px;
+           height:50px;min-height:50px;display:flex;align-items:center;
+           justify-content:space-between;flex-shrink:0}
+.ks-left{display:flex;flex-direction:column;gap:2px}
+.ks-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--navy);
+          display:flex;align-items:center;gap:7px}
+.ks-title::before{content:'';display:block;width:3px;height:16px;background:var(--teal);border-radius:2px}
+.ks-sub{font-size:9px;color:var(--grey);padding-left:10px}
+.kpi-group{display:flex;gap:0}
+.kpi-item{display:flex;flex-direction:column;align-items:flex-end;padding:0 14px;border-right:1px solid var(--border)}
+.kpi-item:last-child{border-right:none;padding-right:0}
+.ki-label{font-size:7.5px;color:var(--grey);letter-spacing:.08em;text-transform:uppercase}
+.ki-val{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--navy);margin:1px 0}
+.ki-chg{font-family:var(--font-mono);font-size:8.5px;font-weight:600}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.muted{color:var(--slate)}
+.gold-val{color:var(--gold)}
+
+/* BODY */
+.body{flex:1;display:flex;gap:0;overflow:hidden;min-height:0}
+
+/* SHARED PANEL STYLES */
+.panel{display:flex;flex-direction:column;padding:9px 12px;gap:6px;overflow:hidden;border-right:1px solid var(--border)}
+.panel:last-child{border-right:none}
+.panel-title{font-family:var(--font-mono);font-size:7.5px;font-weight:700;color:var(--teal);
+             letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.panel-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* BALANCE SHEET TABLE */
+.bs-table{width:100%;border-collapse:collapse;font-size:9px;flex-shrink:0}
+.bs-table tr{border-bottom:1px solid var(--border)}
+.bs-table tr:last-child{border-bottom:none}
+.bs-table tr.section-header td{
+  font-family:var(--font-mono);font-size:7px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.85);background:var(--navy);
+  padding:3px 6px
+}
+.bs-table tr.total-row td{
+  font-family:var(--font-mono);font-size:9.5px;font-weight:700;
+  color:var(--navy);background:var(--surface2);padding:4px 6px
+}
+.bs-table tr.highlight td{background:rgba(46,127,170,.06)}
+.bs-table tr.warn-row td{background:rgba(200,112,32,.06)}
+.bs-table td{padding:3px 6px;font-family:var(--font-body);font-size:8.5px;color:var(--charcoal)}
+.bs-table td.mono{font-family:var(--font-mono);text-align:right;font-size:8.5px}
+.bs-table td.item-label{font-weight:500;color:var(--charcoal)}
+.bs-table td.chg{font-family:var(--font-mono);text-align:right;font-size:8px;font-weight:600}
+.bs-table td.flag{width:16px;padding-right:2px;font-size:10px}
+
+/* Change colours */
+.c-pos{color:var(--green)}.c-neg{color:var(--red)}.c-warn{color:var(--amber)}.c-muted{color:var(--slate)}
+
+/* Cash flow waterfall chart */
+.chart-wrap{flex:1;min-height:0;position:relative}
+
+/* Capital ratios */
+.ratio-list{display:flex;flex-direction:column;gap:5px;flex-shrink:0}
+.ratio-row{display:flex;flex-direction:column;gap:2px}
+.rr-header{display:flex;justify-content:space-between;align-items:baseline}
+.rr-label{font-family:var(--font-body);font-size:8.5px;color:var(--charcoal);font-weight:500}
+.rr-val{font-family:var(--font-mono);font-size:10px;font-weight:700}
+.rr-track{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;position:relative}
+.rr-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.rr-target{position:absolute;top:0;bottom:0;width:2px;background:var(--amber);border-radius:1px}
+.rr-sub{font-family:var(--font-body);font-size:7.5px;color:var(--grey);margin-top:1px}
+
+/* FCF bridge mini table */
+.fcf-bridge{background:var(--surface2);border-radius:5px;padding:6px 8px;flex-shrink:0}
+.fcf-title{font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.fcf-row{display:flex;justify-content:space-between;align-items:center;padding:3.2px 0;
+         border-bottom:1px solid var(--border);font-family:var(--font-body);font-size:8.5px}
+.fcf-row:last-child{border-bottom:none;padding-top:4px;margin-top:2px;border-top:2px solid var(--border)}
+.fcf-row.total{font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--navy)}
+.fcf-val{font-family:var(--font-mono);font-size:8.5px;font-weight:600}
+
+/* Alert box */
+.alert-box{border-radius:4px;border-left:3px solid;padding:6px 9px;flex-shrink:0}
+.alert-box.critical{border-color:var(--red);background:var(--red-bg)}
+.alert-box.warn{border-color:var(--amber);background:var(--amber-bg)}
+.ab-title{font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.ab-body{font-family:var(--font-body);font-size:8px;color:var(--charcoal);line-height:1.45}
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="page-header">
+  <div class="ph-brand"><span class="ph-brand-name">SIMS LIMITED</span><span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span></div>
+  <div class="ph-centre">FY25 AT A GLANCE</div>
+  <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+</header>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+  <div class="ks-left">
+    <div class="ks-title">Balance Sheet, Cash Flow &amp; Capital Management</div>
+    <div class="ks-sub">Financial position · Cash generation quality · Capital allocation · Debt structure · FY25 vs FY24</div>
+  </div>
+  <div class="kpi-group">
+    <div class="kpi-item">
+      <span class="ki-label">Net Debt</span>
+      <span class="ki-val">$332.3M</span>
+      <span class="ki-chg pos">▼ −$79.6M vs FY24</span>
+    </div>
+    <div class="kpi-item">
+      <span class="ki-label">Free Cash Flow</span>
+      <span class="ki-val gold-val">$106.8M</span>
+      <span class="ki-chg pos">▲ vs −$41.7M FY24</span>
+    </div>
+    <div class="kpi-item">
+      <span class="ki-label">Gearing Ratio</span>
+      <span class="ki-val warn">18.8%</span>
+      <span class="ki-chg warn">⚠ Exceeds 15% target</span>
+    </div>
+    <div class="kpi-item">
+      <span class="ki-label">Total Assets</span>
+      <span class="ki-val">$4,446M</span>
+      <span class="ki-chg muted">▼ −$459M (UK Metal exit)</span>
+    </div>
+    <div class="kpi-item">
+      <span class="ki-label">Net Debt / EBITDA</span>
+      <span class="ki-val">0.77×</span>
+      <span class="ki-chg pos">▼ vs 1.42× FY24</span>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- COL 1: Balance Sheet (310px) -->
+  <div class="panel" style="width:310px;flex-shrink:0">
+    <div class="panel-title">Balance Sheet Summary</div>
+
+    <table class="bs-table">
+      <!-- ASSETS -->
+      <tr class="section-header">
+        <td colspan="4">ASSETS</td>
+      </tr>
+      <!-- Current Assets -->
+      <tr class="highlight">
+        <td class="flag">💵</td>
+        <td class="item-label">Cash &amp; Equivalents</td>
+        <td class="mono">181.1</td>
+        <td class="chg c-pos">▲ +88.0</td>
+      </tr>
+      <tr class="warn-row">
+        <td class="flag">📋</td>
+        <td class="item-label">Trade Receivables <span style="font-size:7px;color:var(--amber)">⚠+32%</span></td>
+        <td class="mono">596.9</td>
+        <td class="chg c-warn">▲ +144.4</td>
+      </tr>
+      <tr>
+        <td class="flag">📦</td>
+        <td class="item-label">Inventories</td>
+        <td class="mono">506.3</td>
+        <td class="chg c-pos">▼ −97.4</td>
+      </tr>
+      <tr>
+        <td class="flag"></td>
+        <td class="item-label" style="color:var(--grey)">Other Current Assets</td>
+        <td class="mono c-muted">210.7</td>
+        <td class="chg c-neg">▼ −153.2</td>
+      </tr>
+      <!-- Non-Current Assets -->
+      <tr>
+        <td class="flag">🏭</td>
+        <td class="item-label">PP&amp;E (net)</td>
+        <td class="mono">1,445.4</td>
+        <td class="chg c-pos">▲ +45.9</td>
+      </tr>
+      <tr>
+        <td class="flag">📐</td>
+        <td class="item-label">Right-of-Use Assets</td>
+        <td class="mono">230.9</td>
+        <td class="chg c-muted">▲ +0.8</td>
+      </tr>
+      <tr>
+        <td class="flag">🤝</td>
+        <td class="item-label">Investment in JVs (SAR)</td>
+        <td class="mono">657.5</td>
+        <td class="chg c-pos">▲ +72.6</td>
+      </tr>
+      <tr>
+        <td class="flag"></td>
+        <td class="item-label">Intangibles &amp; Goodwill</td>
+        <td class="mono">466.4</td>
+        <td class="chg c-neg">▼ −32.7</td>
+      </tr>
+      <tr>
+        <td class="flag"></td>
+        <td class="item-label" style="color:var(--grey)">Other Non-Current</td>
+        <td class="mono c-muted">152.9</td>
+        <td class="chg c-muted">▼ −14.8</td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="2">TOTAL ASSETS</td>
+        <td class="mono">4,446.1</td>
+        <td class="chg c-neg">▼ −458.6</td>
+      </tr>
+
+      <!-- LIABILITIES -->
+      <tr class="section-header">
+        <td colspan="4">LIABILITIES &amp; EQUITY</td>
+      </tr>
+      <tr>
+        <td class="flag">💳</td>
+        <td class="item-label">Trade &amp; Other Payables</td>
+        <td class="mono">602.7</td>
+        <td class="chg c-pos">▼ −26.5</td>
+      </tr>
+      <tr class="warn-row">
+        <td class="flag">🏦</td>
+        <td class="item-label">Borrowings <span style="font-size:7px;color:var(--red)">Oct 2026 ⚠</span></td>
+        <td class="mono">513.4</td>
+        <td class="chg c-muted">▲ +8.4</td>
+      </tr>
+      <tr>
+        <td class="flag">🔑</td>
+        <td class="item-label">Lease Liabilities</td>
+        <td class="mono">274.3</td>
+        <td class="chg c-pos">▼ −5.1</td>
+      </tr>
+      <tr>
+        <td class="flag"></td>
+        <td class="item-label" style="color:var(--grey)">Other Liabilities</td>
+        <td class="mono c-muted">468.9</td>
+        <td class="chg c-pos">▼ −454.6</td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="2">TOTAL LIABILITIES</td>
+        <td class="mono">1,859.3</td>
+        <td class="chg c-pos">▼ −482.7</td>
+      </tr>
+      <tr class="warn-row">
+        <td class="flag">📉</td>
+        <td class="item-label">Accum. Deficit <span style="font-size:7px;color:var(--red)">growing</span></td>
+        <td class="mono c-neg">−546.3</td>
+        <td class="chg c-neg">▼ −67.7</td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="2">TOTAL EQUITY</td>
+        <td class="mono">2,586.8</td>
+        <td class="chg c-pos">▲ +24.1</td>
+      </tr>
+    </table>
+	<!-- NET DEBT GAUGE -->
+<div style="margin-top:10px;padding:8px 6px 8px;background:var(--surface2);border-radius:5px">
+  <div class="panel-title" style="margin-bottom:4px">Net Debt Position</div>
+ <svg viewBox="0 0 280 185" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+    <defs>
+      <linearGradient id="arcGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#2E7FAA"/>
+        <stop offset="50%" stop-color="#C8932A"/>
+        <stop offset="100%" stop-color="#B83232"/>
+      </linearGradient>
+    </defs>
+    <!-- White background -->
+    <rect x="0" y="0" width="280" height="195" rx="5" fill="#FFFFFF"/>
+    <!-- Track -->
+    <path d="M 30,145 A 110,110 0 0,1 250,145" fill="none" stroke="#EDF0F5" stroke-width="18" stroke-linecap="round"/>
+    <!-- Gradient overlay dim -->
+    <path d="M 30,145 A 110,110 0 0,1 250,145" fill="none" stroke="url(#arcGrad2)" stroke-width="18" stroke-linecap="round" opacity="0.15"/>
+    <!-- Active arc -->
+<path d="M 30,145 A 110,110 0 0,1 183.3,44" fill="none" stroke="url(#arcGrad2)" stroke-width="18" stroke-linecap="round"/>
+    <!-- Wedge needle -->
+    <polygon points="134,145 146,145 183,44" fill="#0D2B4E" opacity="0.15"/>
+    <circle cx="140" cy="145" r="4" fill="#0D2B4E" opacity="0.9"/>
+    <!-- Scale labels -->
+    <text x="22" y="163" font-family="'JetBrains Mono',monospace" font-size="8" fill="#2E7FAA" font-weight="700">$0</text>
+<text x="258" y="163" font-family="'JetBrains Mono',monospace" font-size="8" fill="#B83232" font-weight="700" text-anchor="end">$513M</text>
+    <!-- Central value -->
+    <text x="140" y="115" font-family="'Syne',sans-serif" font-size="26" font-weight="700" fill="#0D2B4E" text-anchor="middle">$332M</text>
+    <text x="140" y="127" font-family="'Inter',sans-serif" font-size="8" fill="#8898AA" text-anchor="middle">Net Debt</text>
+    <!-- Pills -->
+    <rect x="20" y="150" width="72" height="18" rx="3" fill="#EBF5FB"/>
+    <text x="56" y="162" font-family="'JetBrains Mono',monospace" font-size="8" fill="#2E7FAA" font-weight="700" text-anchor="middle">Cash $181M</text>
+    <rect x="188" y="150" width="72" height="18" rx="3" fill="#FDF0F0"/>
+    <text x="224" y="162" font-family="'JetBrains Mono',monospace" font-size="8" fill="#B83232" font-weight="700" text-anchor="middle">Debt $513M</text>
+    <!-- YoY -->
+    <text x="140" y="178" font-family="'Inter',sans-serif" font-size="7.5" fill="#1A7A4A" text-anchor="middle" font-weight="600">▼ −$79.6M vs FY24 ($411.9M)</text>
+  </svg>
+</div>
+  </div>
+
+  <!-- COL 2: Cash Flow Waterfall (330px) -->
+  <div class="panel" style="width:370px;flex-shrink:0">
+    <div class="panel-title">Cash Flow — FY25</div>
+
+    <!-- FCF bridge -->
+    <div class="fcf-bridge">
+      <div class="fcf-title">Free Cash Flow Bridge (A$M)</div>
+      <div class="fcf-row">
+        <span>Underlying EBITDA</span>
+        <span class="fcf-val pos">$430.0M</span>
+      </div>
+      <div class="fcf-row">
+        <span>Working capital &amp; other</span>
+        <span class="fcf-val pos">+$98.9M</span>
+      </div>
+      <div class="fcf-row">
+        <span>Net interest paid</span>
+        <span class="fcf-val neg">−$40.8M</span>
+      </div>
+     <div class="fcf-row">
+		<span>Underlying tax paid</span>
+		<span class="fcf-val neg">−$40.7M</span>
+		</div>
+      <div class="fcf-row">
+        <span>Lease payments</span>
+        <span class="fcf-val neg">−$89.6M</span>
+      </div>
+      <div class="fcf-row">
+        <span>Sustaining capex</span>
+        <span class="fcf-val neg">−$170.0M</span>
+      </div>
+      <div class="fcf-row">
+		<span>SAR equity income (non-cash) <span style="font-size:7px;color:var(--grey)">JV − distributions</span></span>
+		<span class="fcf-val neg">−$63.3M</span>
+	</div>
+      <div class="fcf-row" style="border-bottom:1px solid var(--border);padding-bottom:3px">
+        <span style="color:var(--grey)">Pre-growth FCF</span>
+        <span class="fcf-val muted">$124.5M</span>
+      </div>
+      <div class="fcf-row">
+        <span>Growth capex</span>
+        <span class="fcf-val neg">−$17.7M</span>
+      </div>
+      <div class="fcf-row total">
+        <span>Free Cash Flow</span>
+        <span class="fcf-val" style="color:var(--gold);font-size:11px">$106.8M</span>
+      </div>
+    </div>
+
+    <!-- Cash flow waterfall chart -->
+    <div style="height:200px;min-height:300px;max-height:200px;position:relative;flex-shrink:0">
+      <canvas id="cfChart"></canvas>
+    </div>
+
+    <!-- Cash alerts -->
+    <div class="alert-box critical" style="flex-shrink:0;padding:16px 9px">
+	<div class="ab-title">⚠ Cash Tax Paid Surged +147% to $106.2M</div>
+      <div class="ab-body">Cash taxes paid ($106.2M) are 2.6× underlying tax ($40.7M) due to timing differences and prior-year instalments. Cash tax rate: 304% of statutory pre-tax profit ($34.9M). Signals further cash drag in FY26 as earnings normalise.</div>
+
+    </div>
+  </div>
+
+  <!-- COL 3: Capital Management (right flex) -->
+  <div class="panel" style="flex:1">
+    <div class="panel-title">Capital Management &amp; Debt Structure</div>
+
+    <!-- Ratios with progress bars -->
+    <div class="ratio-list">
+
+      <div class="ratio-row">
+        <div class="rr-header">
+          <span class="rr-label">Gearing Ratio</span>
+          <span class="rr-val warn">18.8%</span>
+        </div>
+        <div class="rr-track">
+          <div class="rr-fill" style="width:62.7%;background:var(--amber)"></div>
+          <div class="rr-target" style="left:50%"></div>
+        </div>
+        <div class="rr-sub">Target ≤15% — currently breached · amber line = target · Net Debt / (Net Debt + Equity)</div>
+      </div>
+
+      <div class="ratio-row">
+        <div class="rr-header">
+          <span class="rr-label">Net Debt / EBITDA</span>
+          <span class="rr-val pos">0.77×</span>
+        </div>
+        <div class="rr-track">
+          <div class="rr-fill" style="width:19.3%;background:var(--green)"></div>
+        </div>
+        <div class="rr-sub">Improved from 1.42× in FY24 — strong deleveraging on EBITDA growth</div>
+      </div>
+
+      <div class="ratio-row">
+        <div class="rr-header">
+          <span class="rr-label">OCF / Capex Coverage</span>
+          <span class="rr-val pos">1.49×</span>
+        </div>
+        <div class="rr-track">
+          <div class="rr-fill" style="width:74.5%;background:var(--teal)"></div>
+          <div class="rr-target" style="left:67%"></div>
+        </div>
+        <div class="rr-sub">Improved from 0.95× FY24 — operating cash now comfortably covers capex</div>
+      </div>
+
+      <div class="ratio-row">
+        <div class="rr-header">
+          <span class="rr-label">ROIC</span>
+          <span class="rr-val pos">4.9%</span>
+        </div>
+        <div class="rr-track">
+          <div class="rr-fill" style="width:49%;background:var(--teal)"></div>
+          <div class="rr-target" style="left:100px;display:none"></div>
+        </div>
+        <div class="rr-sub">Underlying NOPAT / avg invested capital — improved from 1.8% in FY24</div>
+      </div>
+
+    </div>
+
+    <!-- Debt maturity alert -->
+    <div class="alert-box critical" style="margin-top:2px">
+      <div class="ab-title">🔴 $513.4M Facility Matures October 2026</div>
+      <div class="ab-body">The Group's primary borrowing facility matures in under 18 months. Refinancing is the most critical near-term balance sheet risk. Gearing at 18.8% is already above the 15% internal target, which may constrain refinancing terms. No new facility terms disclosed in the FY25 report.</div>
+    </div>
+
+    <!-- Capex breakdown chart -->
+      <div style="height:370px;min-height:0;position:relative">
+      <canvas id="capexChart"></canvas>
+    </div>
+    <div style="font-family:var(--font-body);font-size:7.5px;color:var(--grey);margin-top:3px;padding:0 4px;line-height:1.5">
+      Total FY25 capex: <span style="font-family:var(--font-mono);font-weight:600;color:var(--navy)">$199.3M</span>
+      &nbsp;·&nbsp; Sustaining: <span style="font-family:var(--font-mono);font-weight:600">$170.0M</span>
+      &nbsp;·&nbsp; Growth: <span style="font-family:var(--font-mono);font-weight:600;color:var(--green)">$17.7M</span>
+      &nbsp;·&nbsp; vs FY24 total: <span style="font-family:var(--font-mono)">$160.8M</span> (+24.0%)
+    </div>
+    
+
+    <!-- Dividend / equity summary -->
+    <div style="display:flex;gap:6px;flex-shrink:0">
+      <div style="flex:1;background:var(--surface2);border-radius:4px;padding:6px 8px;border-top:2px solid var(--gold)">
+        <div style="font-size:7px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em">Full Year DPS</div>
+        <div style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--gold)">23.0¢</div>
+        <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;color:var(--green)">▲ +130% vs FY24 (10.0¢)</div>
+        <div style="font-size:7px;color:var(--grey)">Dividends paid: $38.6M · 100% franked</div>
+      </div>
+      <div style="flex:1;background:var(--surface2);border-radius:4px;padding:6px 8px;border-top:2px solid var(--teal)">
+        <div style="font-size:7px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em">Franking Credits Surplus</div>
+        <div style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--teal)">$62.5M</div>
+        <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;color:var(--green)">▲ +$59.6M vs FY24 ($2.9M)</div>
+        <div style="font-size:7px;color:var(--grey)">Significant capacity for future franked dividends</div>
+      </div>
+      <div style="flex:1;background:var(--surface2);border-radius:4px;padding:6px 8px;border-top:2px solid var(--green)">
+        <div style="font-size:7px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em">Underlying EPS</div>
+        <div style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--green)">48.9¢</div>
+        <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;color:var(--green)">▲ vs −13.8¢ FY24 — turnaround</div>
+        <div style="font-size:7px;color:var(--grey)">192.9M weighted avg shares basic</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /body -->
+
+<nav class="page-nav">
+  <span class="nav-label">Navigate →</span>
+  <a class="nav-btn" href="sims-fy25-page1.html">P1 · Executive Snapshot</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page2.html">P2 · Strategic Insights</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page3.html">P3 · Segment Performance</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page4.html">P4 · Market Exposure</a><div class="nav-sep"></div>
+  <a class="nav-btn active" href="sims-fy25-page5.html">P5 · Financial Position</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+</nav>
+
+ <!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 5 OF 6 &nbsp;·&nbsp; FINANCIAL POSITION</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+</div>
+
+<script>
+Chart.defaults.font.family="'Inter',sans-serif";
+Chart.defaults.font.size=9;
+Chart.defaults.color='#8898AA';
+Chart.defaults.plugins.legend.display=false;
+Chart.defaults.plugins.tooltip.backgroundColor='#0D2B4E';
+Chart.defaults.plugins.tooltip.titleFont={family:"'Syne',sans-serif",weight:'700',size:11};
+Chart.defaults.plugins.tooltip.bodyFont={family:"'JetBrains Mono',monospace",size:10};
+Chart.defaults.plugins.tooltip.padding=9;
+Chart.defaults.plugins.tooltip.cornerRadius=5;
+
+/* ── CASH FLOW WATERFALL ── */
+(function(){
+  const ctx = document.getElementById('cfChart');
+  // Waterfall: OCF → Investing → Financing → Net change
+	const labels  = [['Op.','Cash'],['Capex','& Inv.'],['UK Metal','Proceeds'],['Lease','Pay.'],['Divs','& Other'],['Net','Change']];
+  const changes = [297.1, -194.1, 131.3, -89.6, -54.5, 90.2];
+
+  const floats = [], bars = [], colors = [];
+  let run = 0;
+  changes.forEach((v, i) => {
+    const isFirst = i === 0;
+    const isLast  = i === changes.length - 1;
+    if (isFirst || isLast) {
+      floats.push(0);
+      bars.push(Math.abs(v));
+      colors.push(isLast ? '#C8932A' : '#0D2B4E');
+    } else if (v >= 0) {
+      floats.push(run);
+      bars.push(v);
+      colors.push('#1A7A4A');
+    } else {
+      floats.push(run + v);
+      bars.push(-v);
+      colors.push('#B83232');
+    }
+    run += isFirst ? changes[0] : (isLast ? 0 : v);
+  });
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { data: floats, backgroundColor: 'transparent', stack: 's' },
+        { data: bars,   backgroundColor: colors, borderRadius: 3, borderSkipped: false, stack: 's' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          filter: item => item.datasetIndex === 1,
+          callbacks: {
+            title: items => labels[items[0].dataIndex].join(' '),
+            label: c => {
+              const v = changes[c.dataIndex];
+              return ` ${v >= 0 ? '+' : ''}$${v.toFixed(1)}M`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { stacked: true, grid:{ display:false }, border:{display:false},
+             ticks:{ font:{size:8,weight:'500'}, color:'#8898AA', maxRotation:0 }},
+        y: { stacked: true, grid:{display:false}, border:{display:true,color:'#DDE3EC'},
+             ticks:{ font:{size:8,family:"'JetBrains Mono',monospace"}, color:'#8898AA',
+                     callback: v => '$'+v+'M', maxTicksLimit:5 },
+             min: 0, max: 340 }
+      }
+    }
+  });
+})();
+
+/* ── CAPEX BY SEGMENT — grouped horizontal bars (FY25 vs FY24) ── */
+(function(){
+  const ctx = document.getElementById('capexChart');
+  new Chart(ctx, {
+        type: 'bar',
+		indexAxis: 'y',
+    data: {
+      labels: ['NAM', 'ANZ', 'SLS', 'GTO'],
+      datasets: [
+        {
+          label: 'FY25',
+          data: [139.1, 47.6, 12.4, 0.2],
+          backgroundColor: ['rgba(46,127,170,.85)','rgba(184,50,50,.80)','rgba(109,63,187,.80)','rgba(26,122,74,.75)'],
+          borderRadius: 3,
+          borderSkipped: false
+        },
+        {
+          label: 'FY24',
+          data: [107.1, 48.5, 4.3, 0.0],
+          backgroundColor: 'rgba(13,43,78,.13)',
+          borderColor: 'rgba(13,43,78,.28)',
+          borderWidth: 1,
+          borderRadius: 3,
+          borderSkipped: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          align: 'end',
+          labels: {
+            boxWidth: 8, boxHeight: 8, font: { size: 8 }, color: '#8898AA', padding: 6,
+            generateLabels: () => [
+              { text: 'FY25', fillStyle: 'rgba(46,127,170,.85)', strokeStyle: 'transparent' },
+              { text: 'FY24', fillStyle: 'rgba(13,43,78,.13)', strokeStyle: 'rgba(13,43,78,.28)', lineWidth: 1 }
+            ]
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: c => ` ${c.dataset.label}: $${c.parsed.x.toFixed(1)}M`
+          }
+        },
+        // Annotation: total + split note rendered as subtitle via afterDraw plugin
+      }
+      ,
+       scales: {
+        x: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { font: { size: 8, weight: '600' }, color: '#8898AA' }
+        },
+        y: {
+          grid: { display: false },
+          border: { display: false },
+          min: 0,
+          max: 160,
+          ticks: {
+            font: { size: 8, family: "'JetBrains Mono',monospace" },
+            color: '#8898AA',
+            stepSize: 40,
+            callback: v => '$' + v + 'M'
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

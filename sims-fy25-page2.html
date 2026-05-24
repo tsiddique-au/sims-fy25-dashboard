@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 2: Analyst Findings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --white:      #FFFFFF;
+  --bg:         #F4F6F9;
+  --surface2:   #EDF0F5;
+  --navy:       #0D2B4E;
+  --teal:       #2E7FAA;
+  --teal-bg:    #EBF5FB;
+  --teal-bdr:   #A8D4E8;
+  --gold:       #C8932A;
+  --gold-bg:    #FDF6E8;
+  --green:      #1A7A4A;
+  --green-bg:   #EAF5EE;
+  --green-bdr:  #90CCA8;
+  --red:        #B83232;
+  --red-bg:     #FDF0F0;
+  --red-bdr:    #E8A0A0;
+  --amber:      #C87020;
+  --amber-bg:   #FEF5E8;
+  --amber-bdr:  #F0C080;
+  --slate:      #5F7F9A;
+  --slate-bg:   #F0F4F8;
+  --charcoal:   #2C3E50;
+  --grey:       #8898AA;
+  --border:     #DDE3EC;
+  --font-head:  'Syne', sans-serif;
+  --font-body:  'Inter', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 12px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  background: #E8EBF0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ── A4 LANDSCAPE ── */
+.page {
+  width: 1122px;
+  height: 794px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+/* ── SHARED HEADER ── */
+.page-header {
+  background: var(--navy);
+  height: 44px; min-height: 44px;
+  display: flex; align-items: center;
+  padding: 0 28px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ph-brand { display: flex; align-items: baseline; gap: 10px; }
+.ph-brand-name { font-family: var(--font-head); font-weight: 700; font-size: 13px; color: #fff; letter-spacing: 0.04em; }
+.ph-brand-sub  { font-family: var(--font-body); font-size: 10px; color: #4DA0C8; letter-spacing: 0.06em; font-weight: 500; }
+.ph-centre     { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: #fff; letter-spacing: 0.2em; text-transform: uppercase; }
+.ph-right      { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.5); text-align: right; }
+
+/* ── PAGE TITLE BAR ── */
+.page-title-bar {
+  background: var(--surface2);
+  border-bottom: 2px solid var(--border);
+  padding: 6px 24px;
+  height: 52px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ptb-left { display: flex; flex-direction: column; gap: 2px; }
+.ptb-title {
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 700;
+  color: var(--navy);
+  display: flex; align-items: center; gap: 8px;
+}
+.ptb-title::before {
+  content: '';
+  display: block;
+  width: 4px; height: 18px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+.ptb-sub {
+  font-size: 10px; color: var(--grey);
+  font-family: var(--font-body);
+  padding-left: 12px;
+}
+
+/* ── SUMMARY PILLS ROW ── */
+.summary-pills {
+  display: flex; gap: 8px; align-items: center;
+}
+.sum-pill {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  border: 1px solid;
+  min-width: 110px;
+}
+.sp-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.sp-text { display: flex; flex-direction: column; gap: 0px; }
+.sp-count { font-family: var(--font-mono); font-size: 14px; font-weight: 700; line-height: 1; }
+.sp-label { font-family: var(--font-body); font-size: 8.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+.sp-critical { background: var(--red-bg);   border-color: var(--red-bdr);   color: var(--red);   }
+.sp-high     { background: var(--amber-bg); border-color: var(--amber-bdr); color: var(--amber); }
+.sp-opp      { background: var(--green-bg); border-color: var(--green-bdr); color: var(--green); }
+.sp-watch    { background: var(--teal-bg);  border-color: var(--teal-bdr);  color: var(--teal);  }
+
+/* ── MAIN BODY ── */
+.body-area {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── COLUMN ── */
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 7px 9px 6px;
+  gap: 5px;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+.col:last-child { border-right: none; }
+
+/* ── COLUMN HEADER ── */
+.col-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+.col-header.critical { border-color: var(--red); }
+.col-header.high     { border-color: var(--amber); }
+.col-header.opp      { border-color: var(--green); }
+.col-header.watch    { border-color: var(--teal); }
+
+.ch-icon {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.chi-critical { background: var(--red-bg);   }
+.chi-high     { background: var(--amber-bg); }
+.chi-opp      { background: var(--green-bg); }
+.chi-watch    { background: var(--teal-bg);  }
+
+.ch-text { display: flex; flex-direction: column; gap: 1px; }
+.ch-title {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+}
+.ch-title.critical { color: var(--red);   }
+.ch-title.high     { color: var(--amber); }
+.ch-title.opp      { color: var(--green); }
+.ch-title.watch    { color: var(--teal);  }
+.ch-count {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--grey);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── FINDING ROW ── */
+.finding {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  border-radius: 0 5px 5px 0;
+  padding: 6px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.finding.critical { border-left-color: var(--red);   }
+.finding.high     { border-left-color: var(--amber); }
+.finding.opp      { border-left-color: var(--green); }
+.finding.watch    { border-left-color: var(--teal);  }
+
+.f-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+.f-title {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  flex: 1;
+}
+.f-id {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--grey);
+  white-space: nowrap;
+  padding-top: 1px;
+}
+.f-body {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--charcoal);
+  line-height: 1.45;
+}
+.f-chips {
+  display: flex; gap: 4px; align-items: center; flex-wrap: nowrap;
+}
+.f-chip {
+  font-family: var(--font-mono);
+  font-size: 8px; font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--charcoal);
+}
+.f-chip-lbl {
+  font-size: 8px;
+  color: var(--grey);
+  font-family: var(--font-body);
+}
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="ph-brand">
+      <span class="ph-brand-name">SIMS LIMITED</span>
+      <span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span>
+    </div>
+    <div class="ph-centre">FY25 AT A GLANCE</div>
+    <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+  </header>
+
+  <!-- PAGE TITLE BAR -->
+  <div class="page-title-bar">
+    <div class="ptb-left">
+      <div class="ptb-title">Strategic Risk &amp; Opportunity Review</div>
+      <div class="ptb-sub">20 material signals from the FY25 audited report — grouped by priority for board and executive review</div>
+    </div>
+    <div class="summary-pills">
+      <div class="sum-pill sp-critical">
+        <div class="sp-dot" style="background:var(--red)"></div>
+        <div class="sp-text"><span class="sp-count">2</span><span class="sp-label">Critical Risks</span></div>
+      </div>
+      <div class="sum-pill sp-high">
+        <div class="sp-dot" style="background:var(--amber)"></div>
+        <div class="sp-text"><span class="sp-count">6</span><span class="sp-label">High Risks</span></div>
+      </div>
+      <div class="sum-pill sp-opp">
+        <div class="sp-dot" style="background:var(--green)"></div>
+        <div class="sp-text"><span class="sp-count">6</span><span class="sp-label">Opportunities</span></div>
+      </div>
+      <div class="sum-pill sp-watch">
+        <div class="sp-dot" style="background:var(--teal)"></div>
+        <div class="sp-text"><span class="sp-count">6</span><span class="sp-label">Watch Items</span></div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- BODY: 4 COLUMNS -->
+<div class="body-area">
+
+    <!-- COL 1: CRITICAL RISKS -->
+    <div class="col">
+      <div class="col-header critical">
+        <div class="ch-icon chi-critical">🔴</div>
+        <div class="ch-text">
+          <div class="ch-title critical">Critical Risks</div>
+          <div class="ch-count">Immediate board attention required</div>
+        </div>
+      </div>
+
+      <div class="finding critical">
+        <div class="f-top">
+          <div class="f-title">Debt Facility Matures October 2026</div>
+          <span class="f-id">INS-004</span>
+        </div>
+        <div class="f-body">$513M in borrowings mature in under 18 months. Gearing breaches the 15% internal policy target at 18.8%. Refinancing before maturity is the single most pressing FY26 balance sheet priority.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">Maturity</span><span class="f-chip">Oct 2026</span>
+          <span class="f-chip-lbl">Gearing</span><span class="f-chip" style="color:var(--amber)">18.8% ⚠</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--red)">⚡ FY26</span>
+        </div>
+      </div>
+
+      <div class="finding critical">
+        <div class="f-top">
+          <div class="f-title">UK Metal Receivable $77M+ Unresolved</div>
+          <span class="f-id">INS-005</span>
+        </div>
+        <div class="f-body">Unimetals has not paid the $113M capital balance due June 2025. $36.1M provision raised. Residual $77M+ exposure remains under active monitoring with no resolution timeline disclosed.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">Provision</span><span class="f-chip" style="color:var(--red)">$36.1M</span>
+          <span class="f-chip-lbl">Exposed</span><span class="f-chip" style="color:var(--red)">$77M+</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--red)">⚡ FY26</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COL 2: HIGH RISKS -->
+    <div class="col">
+      <div class="col-header high">
+        <div class="ch-icon chi-high">🟡</div>
+        <div class="ch-text">
+          <div class="ch-title high">High Risks</div>
+          <div class="ch-count">Monitor closely — material downside potential</div>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-top">
+          <div class="f-title">SAR Put Option: $540M Contingent Liability</div>
+          <span class="f-id">INS-012</span>
+        </div>
+        <div class="f-body">Adams family retain a perpetual right to sell their 50% SAR stake to Sims at 4.5× 3-year EBITDA. At current SAR earnings this could require $540M+ cash with no advance warning and no expiry date.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">Multiple</span><span class="f-chip">4.5× EBITDA</span>
+          <span class="f-chip-lbl">Est. Exposure</span><span class="f-chip" style="color:var(--amber)">~$540M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--amber)">📅 Any time</span>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-top">
+          <div class="f-title">Trade Receivables Surged +32%</div>
+          <span class="f-id">INS-006</span>
+        </div>
+        <div class="f-body">Receivables grew 32% while revenue grew only 4%. Days receivable deteriorated materially. Either credit terms were extended to win business or collections are slowing — both require investigation.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">FY25</span><span class="f-chip">$596.9M</span>
+          <span class="f-chip-lbl">FY24</span><span class="f-chip">$452.5M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--red)">⚡ FY26</span>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-top">
+          <div class="f-title">USA Now 33% of Revenue — Tariff Risk</div>
+          <span class="f-id">INS-018</span>
+        </div>
+        <div class="f-body">US revenue concentration jumped from 25.8% to 33.2% in one year. While current tariffs support domestic scrap demand, a policy reversal could materially impact NAM economics. No sensitivity disclosed.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">FY25</span><span class="f-chip">33.2%</span>
+          <span class="f-chip-lbl">FY24</span><span class="f-chip">25.8%</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--amber)">📅 FY26–27</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COL 3: OPPORTUNITIES -->
+    <div class="col">
+      <div class="col-header opp">
+        <div class="ch-icon chi-opp">🟢</div>
+        <div class="ch-text">
+          <div class="ch-title opp">Opportunities</div>
+          <div class="ch-count">Strategic tailwinds to accelerate</div>
+        </div>
+      </div>
+
+      <div class="finding opp">
+        <div class="f-top">
+          <div class="f-title">SLS: 56% Margin on AI Cycle Demand</div>
+          <span class="f-id">INS-008</span>
+        </div>
+        <div class="f-body">Lifecycle Services earns 56% trading margin vs 21% for metals. Revenue +22% driven by hyperscaler data centre expansion. At current growth, every $100M of additional SLS revenue adds ~$56M EBITDA.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">Margin</span><span class="f-chip" style="color:var(--green)">56.4%</span>
+          <span class="f-chip-lbl">Rev Growth</span><span class="f-chip" style="color:var(--green)">+22.0%</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--green)">⚡ FY26</span>
+        </div>
+      </div>
+
+      <div class="finding opp">
+        <div class="f-top">
+          <div class="f-title">Non-Ferrous Mix Shift Structurally Underway</div>
+          <span class="f-id">INS-002</span>
+        </div>
+        <div class="f-body">Non-ferrous grew +31.5% while ferrous shrank 8.2%. Revenue mix shifted 7ppts toward higher-margin zorba, aluminium and copper. This structural shift is expected to continue into FY26.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">NF Revenue</span><span class="f-chip" style="color:var(--green)">$2,519.6M</span>
+          <span class="f-chip-lbl">Mix Share</span><span class="f-chip" style="color:var(--green)">33.6%</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--green)">📅 FY26+</span>
+        </div>
+      </div>
+
+      <div class="finding opp">
+        <div class="f-top">
+          <div class="f-title">NAM Margin Playbook: Template for ANZ</div>
+          <span class="f-id">INS-007</span>
+        </div>
+        <div class="f-body">NAM revenue +0.5% but EBITDA +67% — achieved through disciplined scrap buying, shredder throughput optimisation and domestic channel expansion. This margin-over-volume playbook is directly replicable in ANZ.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">EBITDA FY25</span><span class="f-chip" style="color:var(--green)">$254.3M</span>
+          <span class="f-chip-lbl">vs FY24</span><span class="f-chip">$151.8M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--green)">⚡ FY26</span>
+        </div>
+      </div>
+
+      <div class="finding opp">
+        <div class="f-top">
+          <div class="f-title">OCF Now Covers Capex 1.49×</div>
+          <span class="f-id">INS-017</span>
+        </div>
+        <div class="f-body">FY24 operating cash barely covered capex at 0.95×. FY25 recovered to 1.49×. Cash generation quality is improving, supporting dividend sustainability and reinvestment capacity without additional debt.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">FY25</span><span class="f-chip" style="color:var(--green)">1.49×</span>
+          <span class="f-chip-lbl">FY24</span><span class="f-chip">0.95×</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--green)">⚡ FY26</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COL 4: WATCH ITEMS -->
+    <div class="col">
+      <div class="col-header watch">
+        <div class="ch-icon chi-watch">🔵</div>
+        <div class="ch-text">
+          <div class="ch-title watch">Watch Items</div>
+          <div class="ch-count">Monitor trajectory — no immediate action</div>
+        </div>
+      </div>
+
+      <div class="finding watch">
+        <div class="f-top">
+          <div class="f-title">Capex Accelerating vs Depreciation</div>
+          <span class="f-id">INS-009</span>
+        </div>
+        <div class="f-body">Capex +24% to $199M against D&amp;A of $255M. $129M in CWIP signals further spend committed. Free cash flow will compress in FY26 as sustaining capex requirements continue to increase.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">Capex</span><span class="f-chip">$199.3M</span>
+          <span class="f-chip-lbl">D&amp;A</span><span class="f-chip">$255.1M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--teal)">📅 FY26–27</span>
+        </div>
+      </div>
+
+      <div class="finding watch">
+        <div class="f-top">
+          <div class="f-title">Restructuring: Recurring "One-Off" Pattern</div>
+          <span class="f-id">INS-013</span>
+        </div>
+        <div class="f-body">Second consecutive year of restructuring charges labelled as non-recurring. Cumulative $34.4M over two years. The pattern overstates underlying earnings quality and warrants disclosure review.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">FY25</span><span class="f-chip">$23.5M</span>
+          <span class="f-chip-lbl">FY24</span><span class="f-chip">$10.9M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--teal)">📅 FY26</span>
+        </div>
+      </div>
+
+      <div class="finding watch">
+        <div class="f-top">
+          <div class="f-title">Tax Rate Structural Distortion — 93.1%</div>
+          <span class="f-id">INS-003</span>
+        </div>
+        <div class="f-body">Effective tax rate 93.1% due to unrecognised DTAs in loss-making jurisdictions. $62M unrecognised DTA pool. Structurally constrains reported NPAT until jurisdictional profitability is restored.</div>
+        <div class="f-chips">
+          <span class="f-chip-lbl">ETR FY25</span><span class="f-chip" style="color:var(--amber)">93.1%</span>
+          <span class="f-chip-lbl">Unrec. DTA</span><span class="f-chip">$62M</span>
+          <span class="f-chip-lbl">Horizon</span><span class="f-chip" style="color:var(--teal)">📅 FY27+</span>
+        </div>
+      </div>
+
+    </div>
+
+</div><!-- /body-area -->
+
+  <!-- PAGE NAV -->
+  <nav class="page-nav">
+    <span class="nav-label">Navigate →</span>
+    <a class="nav-btn" href="sims-fy25-page1.html">P1 · Executive Snapshot</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn active" href="sims-fy25-page2.html">P2 · Strategic Insights</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page3.html">P3 · Segment Performance</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page4.html">P4 · Market Exposure</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page5.html">P5 · Financial Position</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+  </nav>
+
+  <!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 2 OF 6 &nbsp;·&nbsp; STRATEGIC INSIGHTS</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+
+</div>
+</body>
+</html>

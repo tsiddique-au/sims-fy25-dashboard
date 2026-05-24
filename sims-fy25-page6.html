@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 6: FY26 Outlook & ESG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --white:#FFFFFF;--surface2:#EDF0F5;--navy:#0D2B4E;--teal:#2E7FAA;--teal-bg:#EBF5FB;
+  --gold:#C8932A;--gold-bg:#FDF6E8;--green:#1A7A4A;--green-bg:#EAF5EE;
+  --red:#B83232;--red-bg:#FDF0F0;--amber:#C87020;--amber-bg:#FEF5E8;
+  --purple:#6D3FBB;--purple-bg:#F3EEFF;--slate:#5F7F9A;
+  --charcoal:#2C3E50;--grey:#8898AA;--border:#DDE3EC;
+  --font-head:'Syne',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#E8EBF0;font-family:var(--font-body);color:var(--charcoal);
+     display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px}
+.page{width:1122px;height:794px;background:var(--white);display:flex;
+      flex-direction:column;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18)}
+
+/* HEADER */
+.page-header{background:var(--navy);height:44px;min-height:44px;display:flex;
+             align-items:center;padding:0 28px;justify-content:space-between;flex-shrink:0}
+.ph-brand{display:flex;align-items:baseline;gap:10px}
+.ph-brand-name{font-family:var(--font-head);font-weight:700;font-size:13px;color:#fff;letter-spacing:.04em}
+.ph-brand-sub{font-family:var(--font-body);font-size:10px;color:#4DA0C8}
+.ph-centre{font-family:var(--font-head);font-weight:700;font-size:15px;color:#fff;letter-spacing:.2em;text-transform:uppercase}
+.ph-right{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.5);text-align:right}
+
+/* TITLE BAR */
+.title-bar{background:var(--surface2);border-bottom:2px solid var(--border);
+           padding:7px 24px;height:46px;min-height:46px;
+           display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--navy);
+          display:flex;align-items:center;gap:8px}
+.tb-title::before{content:'';display:block;width:4px;height:18px;background:var(--teal);border-radius:2px}
+.tb-sub{font-size:9.5px;color:var(--grey);padding-left:12px;margin-top:1px}
+.tb-badge{display:flex;gap:6px;align-items:center}
+.badge{font-family:var(--font-mono);font-size:8px;font-weight:700;
+       padding:3px 10px;border-radius:20px;letter-spacing:.06em}
+.badge-gold{background:var(--gold-bg);color:var(--gold);border:1px solid #E8C878}
+.badge-green{background:var(--green-bg);color:var(--green);border:1px solid #90CCA8}
+.badge-teal{background:var(--teal-bg);color:var(--teal);border:1px solid #A8D4E8}
+
+/* BODY */
+.body{flex:1;display:flex;gap:0;overflow:hidden;min-height:0}
+
+/* COLUMN SHARED */
+.col{display:flex;flex-direction:column;padding:9px 12px;gap:6px;
+     overflow:hidden;border-right:1px solid var(--border)}
+.col:last-child{border-right:none}
+.col-label{font-family:var(--font-mono);font-size:7.5px;font-weight:700;color:var(--teal);
+           letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.col-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── FY26 PRIORITIES (col 1) ── */
+.priority{border-radius:5px;border:1px solid var(--border);border-left:3px solid;
+          padding:7px 10px;display:flex;gap:8px;flex-shrink:0;background:var(--white)}
+.priority.p1{border-left-color:var(--red);background:var(--red-bg)}
+.priority.p2{border-left-color:var(--teal)}
+.priority.p3{border-left-color:var(--purple)}
+.priority.p4{border-left-color:var(--green)}
+.priority.p5{border-left-color:var(--amber)}
+.p-icon{font-size:16px;flex-shrink:0;padding-top:1px}
+.p-body{display:flex;flex-direction:column;gap:2px}
+.p-title{font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--navy)}
+.p-detail{font-family:var(--font-body);font-size:8.5px;color:var(--charcoal);line-height:1.45}
+.p-chips{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap}
+.chip{font-family:var(--font-mono);font-size:7px;font-weight:600;padding:1.5px 6px;
+      border-radius:3px;background:var(--surface2);border:1px solid var(--border);color:var(--charcoal)}
+
+/* ── RISK REGISTER (col 2) ── */
+.risk-item{border-radius:4px;border:1px solid;padding:6px 9px;
+           display:flex;gap:7px;align-items:flex-start;flex-shrink:0}
+.ri-critical{border-color:#E8A0A0;background:var(--red-bg)}
+.ri-high    {border-color:#F0C080;background:var(--amber-bg)}
+.ri-medium  {border-color:#A8D4E8;background:var(--teal-bg)}
+.ri-sev{font-family:var(--font-mono);font-size:7px;font-weight:700;
+        padding:2px 5px;border-radius:3px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.sev-c{background:var(--red);color:#fff}
+.sev-h{background:var(--amber);color:#fff}
+.sev-m{background:var(--teal);color:#fff}
+.ri-body{flex:1}
+.ri-title{font-family:var(--font-head);font-size:9.5px;font-weight:700;color:var(--navy);margin-bottom:1px}
+.ri-detail{font-family:var(--font-body);font-size:8px;color:var(--charcoal);line-height:1.4}
+.ri-val{font-family:var(--font-mono);font-size:8px;font-weight:600;margin-top:2px}
+
+/* ── ESG + OUTLOOK (col 3+4) ── */
+.esg-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;flex-shrink:0}
+.esg-card{border-radius:5px;border:1px solid var(--border);padding:7px 9px;
+          border-top:2px solid;background:var(--white)}
+.ec-icon{font-size:14px;margin-bottom:3px}
+.ec-label{font-family:var(--font-body);font-size:7.5px;color:var(--grey);
+          text-transform:uppercase;letter-spacing:.06em}
+.ec-val{font-family:var(--font-mono);font-size:13px;font-weight:700;margin:2px 0;line-height:1}
+.ec-chg{font-family:var(--font-mono);font-size:8px;font-weight:600}
+.ec-sub{font-family:var(--font-body);font-size:7.5px;color:var(--grey);margin-top:1px}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.muted{color:var(--slate)}
+
+/* Outlook panel */
+.outlook-panel{flex:1;min-height:0;background:var(--navy);border-radius:6px;
+               padding:10px 12px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.op-title{font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;
+          display:flex;align-items:center;gap:6px}
+.op-title::before{content:'';width:3px;height:13px;background:var(--teal);border-radius:2px}
+.outlook-items{display:flex;flex-direction:column;gap:4px;flex:1;overflow:hidden}
+.oi{display:flex;gap:7px;align-items:flex-start;padding:5px 8px;
+    border-radius:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.oi-icon{font-size:11px;flex-shrink:0;padding-top:1px}
+.oi-body{flex:1}
+.oi-title{font-family:var(--font-head);font-size:9px;font-weight:700;color:#fff;margin-bottom:1px}
+.oi-detail{font-family:var(--font-body);font-size:7.5px;color:rgba(255,255,255,.68);line-height:1.4}
+.oi-tag{font-family:var(--font-mono);font-size:6.5px;font-weight:700;padding:1px 5px;
+        border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.tag-pos{background:rgba(26,122,74,.25);color:#6EE7A0}
+.tag-neg{background:rgba(184,50,50,.25);color:#FCA5A5}
+.tag-warn{background:rgba(200,112,32,.25);color:#FDE68A}
+
+/* Purpose statement */
+.purpose-box{background:var(--navy);border-radius:5px;padding:9px 12px;flex-shrink:0;
+             border-left:3px solid var(--teal)}
+.pb-quote{font-family:var(--font-head);font-size:10.5px;font-weight:700;color:#fff;
+          line-height:1.4;font-style:italic}
+.pb-attr{font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.65);
+         margin-top:4px}
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="page-header">
+  <div class="ph-brand"><span class="ph-brand-name">SIMS LIMITED</span><span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span></div>
+  <div class="ph-centre">FY25 AT A GLANCE</div>
+  <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+</header>
+
+<div class="title-bar">
+  <div style="display:flex;flex-direction:column;gap:1px">
+    <div class="tb-title">FY26 Priorities, Key Risks, ESG &amp; Outlook</div>
+    <div class="tb-sub">Strategic agenda · Risk register · Sustainability scorecard · Market outlook · Year ending 30 June 2026</div>
+  </div>
+  <div class="tb-badge">
+    <span class="badge badge-gold">MSCI ESG: AAA</span>
+    <span class="badge badge-green">Corporate Knights: #2 Global</span>
+    <span class="badge badge-teal">LTIFR: 0.11 — Record Low</span>
+    <span class="badge" style="background:var(--green-bg);color:var(--green);border-color:#90CCA8">Scope 1&amp;2: −49% vs FY19</span>
+  </div>
+</div>
+
+
+<div class="body">
+
+  <!-- COL 1: FY26 Priorities (270px) -->
+  <div class="col" style="width:270px;flex-shrink:0">
+    <div class="col-label">FY26 Strategic Priorities</div>
+
+    <div class="priority p1">
+      <span class="p-icon">🏦</span>
+      <div class="p-body">
+        <div class="p-title">Refinance the $513M Facility</div>
+        <div class="p-detail">Primary borrowing facility matures October 2026. Securing new terms before maturity is the Board's most urgent financial priority. Gearing at 18.8% above 15% target may constrain terms.</div>
+        <div class="p-chips"><span class="chip" style="color:var(--red)">Critical · Oct 2026</span><span class="chip">$513.4M at risk</span></div>
+      </div>
+    </div>
+
+    <div class="priority p2">
+      <span class="p-icon">💻</span>
+      <div class="p-body">
+        <div class="p-title">Scale SLS into AI Hyperscaler Demand</div>
+        <div class="p-detail">Data centre expansion is driving unprecedented demand for IT asset disposition. SLS at 56% trading margin is Sims' highest-return business. FY26 priority: expand Midwest and West Coast capacity.</div>
+        <div class="p-chips"><span class="chip" style="color:var(--purple)">+22% revenue FY25</span><span class="chip">56.4% margin</span></div>
+      </div>
+    </div>
+
+    <div class="priority p3">
+      <span class="p-icon">🏗️</span>
+      <div class="p-body">
+        <div class="p-title">NAM Margin Discipline &amp; Volume Recovery</div>
+        <div class="p-detail">US tariffs are creating a domestic scrap premium. NAM must convert margin discipline (FY25: +67.5% EBITDA) into volume recovery. Shredder technology and rail investment to continue.</div>
+        <div class="p-chips"><span class="chip" style="color:var(--teal)">Tariff tailwind</span><span class="chip">EBITDA $254M</span></div>
+      </div>
+    </div>
+
+    <div class="priority p4">
+      <span class="p-icon">♻️</span>
+      <div class="p-body">
+        <div class="p-title">ANZ Non-Ferrous Pivot vs China Headwind</div>
+        <div class="p-detail">Chinese steel exports remain the greatest structural headwind. ANZ must accelerate zorba and non-ferrous recovery to offset compressed ferrous margins. St Mary's shredder upgrade underway.</div>
+        <div class="p-chips"><span class="chip" style="color:var(--red)">China export risk</span><span class="chip">EBIT −24.4% FY25</span></div>
+      </div>
+    </div>
+
+    <div class="priority p5">
+      <span class="p-icon">🌱</span>
+      <div class="p-body">
+        <div class="p-title">Decarbonisation Plan Review &amp; Scope 1 Focus</div>
+        <div class="p-detail">FY26 will deliver a comprehensive reset of the decarbonisation roadmap. Scope 1 (diesel/gas) now accounts for nearly all remaining operational emissions. Capital to be redirected toward hard-to-abate sources.</div>
+        <div class="p-chips"><span class="chip" style="color:var(--green)">−49% Scope 1&amp;2 vs FY19</span><span class="chip">Review FY26</span></div>
+      </div>
+    </div>
+
+  </div><!-- /col1 -->
+
+  <!-- COL 2: Risk Register (268px) -->
+  <div class="col" style="width:268px;flex-shrink:0">
+    <div class="col-label">FY26 Risk Register — Top 6</div>
+
+    <div class="risk-item ri-critical">
+      <span class="ri-sev sev-c">CRITICAL</span>
+      <div class="ri-body">
+        <div class="ri-title">Debt Refinancing Failure</div>
+        <div class="ri-detail">$513M matures Oct 2026. Failure to refinance on acceptable terms could trigger liquidity event. Gearing above target limits negotiating leverage.</div>
+        <div class="ri-val warn">Gearing 18.8% · Target 15%</div>
+      </div>
+    </div>
+
+    <div class="risk-item ri-critical">
+      <span class="ri-sev sev-c">CRITICAL</span>
+      <div class="ri-body">
+        <div class="ri-title">UK Metal Receivable — $77M+ Exposed</div>
+        <div class="ri-detail">Unimetals has not paid the $113M capital balance. Only $36.1M provisioned. Residual $77M+ unresolved. Risk is materially under-disclosed in the FY25 Annual Report.</div>
+        <div class="ri-val neg">$77M+ unrecovered · FY26 crystallisation risk</div>
+      </div>
+    </div>
+
+    <div class="risk-item ri-high">
+      <span class="ri-sev sev-h">HIGH</span>
+      <div class="ri-body">
+        <div class="ri-title">China Steel Exports — ANZ Margin Erosion</div>
+        <div class="ri-detail">Record Chinese steel exports suppressed ANZ ferrous prices throughout FY25. Expected to persist into FY26. ANZ EBIT fell 24.4% — further decline possible.</div>
+        <div class="ri-val warn">ANZ EBIT: $72.2M · FY24: $94.8M</div>
+      </div>
+    </div>
+
+    <div class="risk-item ri-high">
+      <span class="ri-sev sev-h">HIGH</span>
+      <div class="ri-body">
+        <div class="ri-title">US Tariff Policy — NAM Concentration Risk</div>
+        <div class="ri-detail">USA is now 33.2% of revenue. While tariffs currently help domestic scrap demand, a policy reversal or escalation could disrupt NAM economics. No sensitivity scenario disclosed.</div>
+        <div class="ri-val warn">US revenue: $2.49B · +33.9% FY25</div>
+      </div>
+    </div>
+
+    <div class="risk-item ri-high">
+      <span class="ri-sev sev-h">HIGH</span>
+      <div class="ri-body">
+        <div class="ri-title">SAR Put Option — $540M+ Contingent</div>
+        <div class="ri-detail">Adams family retain perpetual right to sell their 50% SAR stake to Sims at 4.5× 3-year EBITDA. At current EBITDA, exercise could require $540M+ cash with no warning.</div>
+        <div class="ri-val warn">Est. exposure ~$540M · No expiry date</div>
+      </div>
+    </div>
+
+    <div class="risk-item ri-medium">
+      <span class="ri-sev sev-m">MEDIUM</span>
+      <div class="ri-body">
+        <div class="ri-title">Trade Receivables &amp; Working Capital</div>
+        <div class="ri-detail">Receivables +32% to $596.9M while revenue +4.1%. Days receivable deteriorated. 60+ day overdue debtors rising. Credit quality requires monitoring in FY26.</div>
+        <div class="ri-val muted">$596.9M · FY24: $452.5M</div>
+      </div>
+    </div>
+
+   
+
+  </div><!-- /col2 -->
+
+  <!-- COL 3: ESG Scorecard (214px) -->
+  <div class="col" style="width:228px;flex-shrink:0">
+    <div class="col-label">ESG &amp; Safety Scorecard</div>
+
+    <div class="esg-grid">
+      <div class="esg-card" style="border-top-color:var(--green)">
+        <div class="ec-icon">🦺</div>
+        <div class="ec-label">LTIFR</div>
+        <div class="ec-val pos">0.11</div>
+        <div class="ec-chg pos">▼ −52% vs FY24</div>
+        <div class="ec-sub">Record low in company history</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--green)">
+        <div class="ec-icon">📊</div>
+        <div class="ec-label">TRIFR</div>
+        <div class="ec-val pos">1.0</div>
+        <div class="ec-chg pos">▼ −37% vs FY19</div>
+        <div class="ec-sub">Total recordable injuries</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--teal)">
+        <div class="ec-icon">⭐</div>
+        <div class="ec-label">MSCI ESG</div>
+        <div class="ec-val" style="color:var(--teal)">AAA</div>
+        <div class="ec-chg pos">Top global tier</div>
+        <div class="ec-sub">Highest rating category</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--gold)">
+        <div class="ec-icon">🌍</div>
+        <div class="ec-label">Corp. Knights</div>
+        <div class="ec-val" style="color:var(--gold)">#2</div>
+        <div class="ec-chg pos">Global 100 Sustainable</div>
+        <div class="ec-sub">2025 ranking</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--green)">
+        <div class="ec-icon">☀️</div>
+        <div class="ec-label">Scope 1&amp;2 Reduction</div>
+        <div class="ec-val pos">−49%</div>
+        <div class="ec-chg pos">vs FY19 baseline</div>
+        <div class="ec-sub">Target 23% — exceeded</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--teal)">
+        <div class="ec-icon">⚡</div>
+        <div class="ec-label">Renewable Power</div>
+        <div class="ec-val" style="color:var(--teal)">100%</div>
+        <div class="ec-chg pos">FY25 target achieved</div>
+        <div class="ec-sub">11 countries · all operations</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--slate)">
+        <div class="ec-icon">👥</div>
+        <div class="ec-label">Employees</div>
+        <div class="ec-val muted">4,750+</div>
+        <div class="ec-chg muted">13 countries</div>
+        <div class="ec-sub">275 metal facilities</div>
+      </div>
+      <div class="esg-card" style="border-top-color:var(--purple)">
+        <div class="ec-icon">♻️</div>
+        <div class="ec-label">Recycling Output</div>
+        <div class="ec-val" style="color:var(--purple)">6.3Mt</div>
+        <div class="ec-chg pos">Proprietary sales volume</div>
+        <div class="ec-sub">−3.8% vs FY24 on China headwind</div>
+      </div>
+    </div>
+
+    <div class="purpose-box">
+      <div class="pb-quote">"To create a world without waste to preserve our planet."</div>
+      <div class="pb-attr">Sims Limited Purpose Statement · Aligned to UN SDGs 8, 12 &amp; 13</div>
+    </div>
+
+  </div><!-- /col3 -->
+
+  <!-- COL 4: Outlook (flex:1) -->
+  <div class="col" style="flex:1">
+    <div class="col-label">FY26 Market Outlook — Sims Management View</div>
+
+    <div class="outlook-panel">
+      <div class="op-title">Management Outlook Signals — FY26</div>
+      <div class="outlook-items">
+
+        <div class="oi">
+          <span class="oi-icon">🏭</span>
+          <div class="oi-body">
+            <div class="oi-title">EAF Growth &amp; Scrap Demand — Long-Term Structural Tailwind</div>
+            <div class="oi-detail">Electric arc furnace capacity globally continues to expand, underpinned by decarbonisation mandates and government onshoring policies. Scrap demand growth is a multi-decade structural trend that directly benefits Sims' core business across NAM and ANZ.</div>
+          </div>
+          <span class="oi-tag tag-pos">Positive</span>
+        </div>
+
+        <div class="oi">
+          <span class="oi-icon">🤖</span>
+          <div class="oi-body">
+            <div class="oi-title">AI Data Centre Cycle — SLS Demand Surging</div>
+            <div class="oi-detail">Hyperscaler data centre expansion is accelerating hardware refresh cycles, driving sustained demand for SLS IT asset disposition services. Resale prices for repurposed units are lifting. SLS is well positioned to build on its record FY25 EBIT performance throughout FY26.</div>
+          </div>
+          <span class="oi-tag tag-pos">Positive</span>
+        </div>
+
+        <div class="oi">
+          <span class="oi-icon">🇺🇸</span>
+          <div class="oi-body">
+            <div class="oi-title">US Tariffs — Domestic Scrap Premium to Persist into FY26</div>
+            <div class="oi-detail">Tariffs protecting domestic US steel and aluminium industries are supporting local ferrous scrap demand and maintaining a domestic sales premium. Management expects this benefit to extend from FY25 into FY26, continuing to support NAM and SAR margins.</div>
+          </div>
+          <span class="oi-tag tag-pos">Positive</span>
+        </div>
+
+        <div class="oi">
+          <span class="oi-icon">🇨🇳</span>
+          <div class="oi-body">
+            <div class="oi-title">China Steel Exports — Persistent Headwind, Floor May Be Near</div>
+            <div class="oi-detail">Record-high Chinese steel exports are expected to continue suppressing ferrous prices in export markets, particularly challenging ANZ and NAM export sales. Management notes that while pricing pressure persists, further significant declines from FY25 levels appear limited as markets find a floor.</div>
+          </div>
+          <span class="oi-tag tag-warn">Watch</span>
+        </div>
+
+        <div class="oi">
+          <span class="oi-icon">♻️</span>
+          <div class="oi-body">
+            <div class="oi-title">Non-Ferrous Momentum — Strong Markets Expected to Continue</div>
+            <div class="oi-detail">Zorba, aluminium, and copper demand are expected to remain robust throughout FY26, providing strong trading margin contributions across NAM, ANZ, and SAR operations. The structural shift from ferrous to non-ferrous revenue mix (FY25: +7ppts to 33.6%) is expected to continue.</div>
+          </div>
+          <span class="oi-tag tag-pos">Positive</span>
+        </div>
+
+        <div class="oi">
+          <span class="oi-icon">💧</span>
+          <div class="oi-body">
+            <div class="oi-title">Decarbonisation Plan Reset — Scope 1 Hard-to-Abate Focus</div>
+            <div class="oi-detail">FY26 will see a comprehensive review of the decarbonisation roadmap. Scope 1 diesel and gas emissions now represent nearly all remaining operational emissions — and are the hardest to abate. Capital will be redirected toward the most impactful initiatives including electrification of plant and vehicles.</div>
+          </div>
+          <span class="oi-tag tag-warn">In Progress</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Analyst summary -->
+    <div style="background:var(--surface2);border-radius:5px;border-left:4px solid var(--gold);
+                padding:8px 11px;flex-shrink:0">
+      <div style="font-family:var(--font-head);font-size:9.5px;font-weight:700;color:var(--navy);margin-bottom:3px">
+        Executive Summary — FY25 Turnaround &amp; FY26 Watch Points
+      </div>
+      <div style="font-family:var(--font-body);font-size:8.5px;color:var(--charcoal);line-height:1.5">
+        Sims delivered a decisive earnings recovery in FY25: EBIT +198%, FCF positive at $106.8M, EBITDA +48.1%. The turnaround was real but concentrated — driven by NAM cost discipline and SAR JV contribution, while ANZ structurally underperformed. In FY26, the most critical management tasks are: <strong>(1)</strong> refinancing the $513M facility before October 2026; <strong>(2)</strong> resolving the UK Metal receivable ($77M+ exposed); and <strong>(3)</strong> sustaining SLS momentum while managing China-driven ANZ headwinds. The balance sheet has materially strengthened but gearing remains above target and statutory earnings remain negative. Sims is a business in recovery — the turnaround is credible, but not yet complete.
+      </div>
+    </div>
+
+  </div><!-- /col4 -->
+
+</div><!-- /body -->
+
+<nav class="page-nav">
+  <span class="nav-label">Navigate →</span>
+  <a class="nav-btn" href="sims-fy25-page1.html">P1 · Executive Snapshot</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page2.html">P2 · Strategic Insights</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page3.html">P3 · Segment Performance</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page4.html">P4 · Market Exposure</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page5.html">P5 · Financial Position</a><div class="nav-sep"></div>
+  <a class="nav-btn active" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+</nav>
+
+<!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 6 OF 6 &nbsp;·&nbsp; FY26 OUTLOOK & ESG</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+
+</div>
+</body>
+</html>

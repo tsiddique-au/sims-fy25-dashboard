@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 4: Revenue & Geography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root {
+  --white:#FFFFFF;--surface2:#EDF0F5;--navy:#0D2B4E;--teal:#2E7FAA;--teal-bg:#EBF5FB;
+  --gold:#C8932A;--gold-bg:#FDF6E8;--green:#1A7A4A;--green-bg:#EAF5EE;
+  --red:#B83232;--red-bg:#FDF0F0;--amber:#C87020;--amber-bg:#FEF5E8;
+  --purple:#6D3FBB;--slate:#5F7F9A;--charcoal:#2C3E50;--grey:#8898AA;--border:#E8EDF3;
+  --font-head:'Syne',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#E8EBF0;font-family:var(--font-body);color:var(--charcoal);
+     display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px}
+.page{width:1122px;height:794px;background:var(--white);display:flex;
+      flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(15,35,60,.08)}
+
+/* HEADER */
+.page-header{background:var(--navy);height:44px;min-height:44px;display:flex;
+             align-items:center;padding:0 28px;justify-content:space-between;flex-shrink:0}
+.ph-brand{display:flex;align-items:baseline;gap:10px}
+.ph-brand-name{font-family:var(--font-head);font-weight:700;font-size:13px;color:#fff;letter-spacing:.04em}
+.ph-brand-sub{font-family:var(--font-body);font-size:10px;color:#4DA0C8}
+.ph-centre{font-family:var(--font-head);font-weight:700;font-size:15px;color:#fff;letter-spacing:.2em;text-transform:uppercase}
+.ph-right{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.5);text-align:right}
+
+/* KPI STRIP */
+.kpi-strip{background:var(--surface2);border-bottom:2px solid var(--border);padding:0 24px;
+           height:46px;min-height:46px;display:flex;align-items:center;
+           justify-content:space-between;flex-shrink:0}
+.ks-left{display:flex;flex-direction:column;gap:1px}
+.ks-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--navy);
+          display:flex;align-items:center;gap:7px}
+.ks-title::before{content:'';display:block;width:3px;height:16px;background:var(--teal);border-radius:2px}
+.ks-sub{font-size:9px;color:var(--grey);padding-left:10px}
+.kpi-group{display:flex;gap:0}
+.kpi-item{display:flex;flex-direction:column;align-items:flex-end;padding:0 14px;border-right:1px solid var(--border)}
+.kpi-item:last-child{border-right:none;padding-right:0}
+.ki-label{font-size:7.5px;color:var(--grey);letter-spacing:.08em;text-transform:uppercase}
+.ki-val{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--navy);margin:1px 0}
+.ki-chg{font-family:var(--font-mono);font-size:8.5px;font-weight:600}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.muted{color:var(--slate)}
+
+/* BODY: 3-col */
+.body{flex:1;display:flex;gap:0;overflow:hidden;min-height:0}
+
+/* LEFT 200px */
+.col-left{width:200px;flex-shrink:0;border-right:1px solid var(--border);
+          display:flex;flex-direction:column;padding:7px 10px;gap:5px;overflow:hidden}
+.col-label{font-family:var(--font-mono);font-size:7px;font-weight:700;color:var(--teal);
+           letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.col-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Country rows */
+.cr{display:grid;grid-template-columns:16px 1fr 52px 42px;align-items:center;
+    gap:3px;padding:3px 5px;border-radius:3px;border:1px solid var(--border);background:var(--white);flex-shrink:0}
+.cr.hi{border-color:#A8D4E8;background:var(--teal-bg)}
+.cr.dn{border-color:#E8A0A0;background:var(--red-bg)}
+.cr.nw{border-color:#F0C080;background:var(--amber-bg)}
+.cr.gn{opacity:.5;background:var(--surface2)}
+.cr-flag{font-size:10px;line-height:1}
+.cr-info{display:flex;flex-direction:column;gap:1px;overflow:hidden}
+.cr-name{font-family:var(--font-body);font-size:8px;font-weight:600;color:var(--navy);white-space:nowrap}
+.cr-bar-wrap{height:3px;background:rgba(0,0,0,.07);border-radius:2px;overflow:hidden;margin-top:1px}
+.cr-bar{height:100%;border-radius:2px}
+.cr-val{font-family:var(--font-mono);font-size:8px;font-weight:700;color:var(--navy);text-align:right}
+.cr-chg{font-family:var(--font-mono);font-size:7px;font-weight:600;text-align:right}
+.cr-badge{font-family:var(--font-mono);font-size:5.5px;font-weight:700;padding:1px 3px;border-radius:2px;margin-left:2px;vertical-align:middle}
+.badge-new{background:var(--amber-bg);color:var(--amber)}
+.badge-lost{background:var(--red-bg);color:var(--red)}
+
+.other-note{background:var(--surface2);border-radius:3px;border-left:3px solid var(--slate);
+            padding:4px 7px;flex-shrink:0}
+.on-title{font-family:var(--font-head);font-size:7.5px;font-weight:700;color:var(--navy)}
+.on-body{font-family:var(--font-body);font-size:6.5px;color:var(--grey);line-height:1.4;margin-top:1px}
+
+/* TREEMAP / heatmap */
+.treemap-wrap{flex:1;min-height:0;border-radius:4px;border:1px solid var(--border);overflow:hidden;position:relative}
+#treemapSvg{width:100%;height:100%;display:block}
+
+/* MID: map */
+.col-mid{flex:1;display:flex;flex-direction:column;border-right:1px solid var(--border);
+         padding:7px 10px;gap:5px;overflow:hidden;min-height:0}
+
+.map-legend{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex-shrink:0}
+.ml-item{display:flex;align-items:center;gap:3px;font-family:var(--font-body);font-size:7px;color:var(--charcoal)}
+.ml-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.map-container{flex:1;min-height:0;background:#C8DFF0;border-radius:5px;
+               border:1px solid var(--border);overflow:hidden;position:relative}
+#worldMapSvg{width:100%;height:100%;display:block}
+
+/* product mix */
+.mix-row{display:flex;gap:4px;flex-shrink:0}
+.mix-card{flex:1;border-radius:3px;border:1px solid var(--border);border-top:2px solid;padding:4px 7px}
+.mc-lbl{font-size:6.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.05em}
+.mc-val{font-family:var(--font-mono);font-size:10px;font-weight:700;margin:1px 0}
+.mc-chg{font-family:var(--font-mono);font-size:7px;font-weight:600}
+.mc-sub{font-size:6.5px;color:var(--grey)}
+
+/* RIGHT 220px */
+.col-right{width:220px;flex-shrink:0;display:flex;flex-direction:column;
+           padding:7px 10px;gap:5px;overflow:hidden}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:4px;
+            padding:6px 8px 5px;display:flex;flex-direction:column;min-height:0}
+.cc-title{font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--navy);
+          display:flex;align-items:center;gap:4px;flex-shrink:0;margin-bottom:2px}
+.cc-title::before{content:'';width:2.5px;height:10px;background:var(--teal);border-radius:2px;display:block}
+.cc-sub{font-size:7px;color:var(--grey);margin-bottom:3px;flex-shrink:0}
+.cc-canvas{flex:1;min-height:0;position:relative}
+
+/* tooltip */
+.map-tip{position:fixed;background:var(--navy);color:#fff;border-radius:5px;
+         padding:7px 11px;pointer-events:none;display:none;z-index:9999;
+         box-shadow:0 4px 20px rgba(0,0,0,.35);min-width:170px;max-width:220px}
+.mt-name{font-family:var(--font-head);font-size:11px;font-weight:700;margin-bottom:4px;
+         border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:3px}
+.mt-val{font-family:var(--font-mono);font-size:11px;font-weight:700;color:#7DD3FC}
+.mt-row{font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.78);margin-top:2px}
+.mt-note{font-family:var(--font-body);font-size:7px;color:rgba(255,255,255,.55);
+         margin-top:4px;font-style:italic;border-top:1px solid rgba(255,255,255,.1);padding-top:3px}
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="page-header">
+  <div class="ph-brand"><span class="ph-brand-name">SIMS LIMITED</span><span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span></div>
+  <div class="ph-centre">FY25 AT A GLANCE</div>
+  <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+</header>
+
+<div class="kpi-strip">
+  <div class="ks-left">
+    <div class="ks-title">Revenue, Geography &amp; Market Dynamics</div>
+    <div class="ks-sub">Revenue by customer destination · Product mix shift · FY25 vs FY24</div>
+  </div>
+  <div class="kpi-group">
+    <div class="kpi-item"><span class="ki-label">Total Revenue</span><span class="ki-val">$7,494M</span><span class="ki-chg pos">▲ +4.1% vs FY24</span></div>
+    <div class="kpi-item"><span class="ki-label">Non-Ferrous Share</span><span class="ki-val">33.6%</span><span class="ki-chg pos">▲ +7ppts</span></div>
+    <div class="kpi-item"><span class="ki-label">US Concentration</span><span class="ki-val warn">33.2%</span><span class="ki-chg warn">▲ +7.4ppts · tariff risk</span></div>
+    <div class="kpi-item"><span class="ki-label">Countries Named</span><span class="ki-val">6</span><span class="ki-chg muted">+ Other 26.3% (AR Note 3)</span></div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- LEFT: table + treemap -->
+  <div class="col-left">
+    <div class="col-label">Revenue by Destination</div>
+
+    <div class="cr hi">
+      <span class="cr-flag">🇺🇸</span>
+      <div class="cr-info"><span class="cr-name">United States</span><div class="cr-bar-wrap"><div class="cr-bar" style="width:100%;background:#2E7FAA"></div></div></div>
+      <span class="cr-val">$2,488M</span><span class="cr-chg pos">▲+33.9%</span>
+    </div>
+    <div class="cr dn">
+      <span class="cr-flag">🇹🇷</span>
+      <div class="cr-info"><span class="cr-name">Turkey</span><div class="cr-bar-wrap"><div class="cr-bar" style="width:38%;background:#B83232"></div></div></div>
+      <span class="cr-val">$952M</span><span class="cr-chg neg">▼−23.0%</span>
+    </div>
+    <div class="cr">
+      <span class="cr-flag">🇨🇳</span>
+      <div class="cr-info"><span class="cr-name">China</span><div class="cr-bar-wrap"><div class="cr-bar" style="width:31%;background:#0D2B4E"></div></div></div>
+      <span class="cr-val">$775M</span><span class="cr-chg pos">▲+8.8%</span>
+    </div>
+    <div class="cr">
+      <span class="cr-flag">🇦🇺</span>
+      <div class="cr-info"><span class="cr-name">Australia <span style="font-weight:400;font-size:6px;color:var(--grey)">(dom.)</span></span><div class="cr-bar-wrap"><div class="cr-bar" style="width:18%;background:#C8932A"></div></div></div>
+      <span class="cr-val">$451M</span><span class="cr-chg muted">▲+2.0%</span>
+    </div>
+    <div class="cr dn">
+      <span class="cr-flag">🇮🇳</span>
+      <div class="cr-info"><span class="cr-name">India</span><div class="cr-bar-wrap"><div class="cr-bar" style="width:18%;background:#B83232"></div></div></div>
+      <span class="cr-val">$447M</span><span class="cr-chg neg">▼−24.1%</span>
+    </div>
+    <div class="cr nw">
+      <span class="cr-flag">🇹🇭</span>
+      <div class="cr-info"><span class="cr-name">Thailand <span class="cr-badge badge-new">NEW</span></span><div class="cr-bar-wrap"><div class="cr-bar" style="width:16%;background:#C87020"></div></div></div>
+      <span class="cr-val">$408M</span><span class="cr-chg warn">▲ New</span>
+    </div>
+    <div class="cr gn">
+      <span class="cr-flag">🇧🇩</span>
+      <div class="cr-info"><span class="cr-name">Bangladesh <span class="cr-badge badge-lost">OUT</span></span><div class="cr-bar-wrap"><div class="cr-bar" style="width:0%"></div></div></div>
+      <span class="cr-val neg">$0</span><span class="cr-chg neg">▼−100%</span>
+    </div>
+    <div class="cr">
+      <span class="cr-flag">🌍</span>
+      <div class="cr-info"><span class="cr-name">Other Markets</span><div class="cr-bar-wrap"><div class="cr-bar" style="width:79%;background:#5F7F9A"></div></div></div>
+      <span class="cr-val">$1,974M</span><span class="cr-chg pos">▲+7.4%</span>
+    </div>
+
+    <div class="other-note">
+      <div class="on-title">ℹ "Other" — $1,974M (26.3%)</div>
+      <div class="on-body">AR Note 3 names only 6 countries. Remainder includes S.Korea, NZ, Malaysia, Vietnam, Japan, Germany — not individually disclosed.</div>
+    </div>
+
+    <div class="col-label" style="margin-top:2px">Revenue Treemap — FY25</div>
+    <div class="treemap-wrap">
+      <svg id="treemapSvg"></svg>
+    </div>
+  </div>
+
+  <!-- MID: map -->
+  <div class="col-mid">
+    <div class="col-label">Global Revenue Map — FY25 · Ranked by revenue · Hover for detail</div>
+    <div class="map-container" id="mapContainer" style="background:#F7F9FB;border-radius:6px;border:1px solid var(--border);">
+      <svg id="worldMapSvg"></svg>
+    </div>
+    <div class="col-label" style="margin-top:2px">Product Revenue Mix — FY25</div>
+    <div class="mix-row">
+      <div class="mix-card" style="border-top-color:#0D2B4E"><div class="mc-lbl">Ferrous Recycling</div><div class="mc-val neg">$4,483M</div><div class="mc-chg neg">▼ −8.2%</div><div class="mc-sub">59.8% · ↓8ppts</div></div>
+      <div class="mix-card" style="border-top-color:var(--teal)"><div class="mc-lbl">Non-Ferrous</div><div class="mc-val pos">$2,520M</div><div class="mc-chg pos">▲ +31.5%</div><div class="mc-sub">33.6% · ↑7ppts</div></div>
+      <div class="mix-card" style="border-top-color:var(--purple)"><div class="mc-lbl">IT Recycling (SLS)</div><div class="mc-val" style="color:var(--purple)">$427M</div><div class="mc-chg pos">▲ +22.0%</div><div class="mc-sub">5.7% · 56% margin</div></div>
+      <div class="mix-card" style="border-top-color:var(--slate)"><div class="mc-lbl">Secondary / Other</div><div class="mc-val muted">$65M</div><div class="mc-chg pos">▲ +36.7%</div><div class="mc-sub">0.9% of revenue</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: charts -->
+  <div class="col-right">
+    <div class="col-label">Revenue Charts</div>
+    <div class="chart-card" style="flex:1.1">
+      <div class="cc-title">Countries — FY25 vs FY24</div>
+      <div class="cc-sub">A$M · Bangladesh zero · Thailand new</div>
+      <div class="cc-canvas"><canvas id="countryBar"></canvas></div>
+    </div>
+    <div class="chart-card" style="flex:.95">
+      <div class="cc-title">Product Mix FY24 → FY25</div>
+      <div class="cc-sub">% of revenue · non-ferrous +7ppts share</div>
+      <div class="cc-canvas"><canvas id="mixBar"></canvas></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tooltip -->
+<div class="map-tip" id="mapTip">
+  <div class="mt-name" id="mtName"></div>
+  <div class="mt-val"  id="mtVal"></div>
+  <div class="mt-row"  id="mtChg"></div>
+  <div class="mt-note" id="mtNote"></div>
+</div>
+
+<nav class="page-nav">
+  <span class="nav-label">Navigate →</span>
+  <a class="nav-btn" href="sims-fy25-page1.html">P1 · Executive Snapshot</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page2.html">P2 · Strategic Insights</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page3.html">P3 · Segment Performance</a><div class="nav-sep"></div>
+  <a class="nav-btn active" href="sims-fy25-page4.html">P4 · Market Exposure</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page5.html">P5 · Financial Position</a><div class="nav-sep"></div>
+  <a class="nav-btn" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+</nav>
+
+ <!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 4 OF 6 &nbsp;·&nbsp; MARKET EXPOSURE</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+</div>
+
+<script>
+/* ═══════════════════════════════════
+   SIMS COUNTRY DATA (3-letter ISO)
+═══════════════════════════════════ */
+const SD = {
+  USA:{ name:'United States', val:2488.6, pct:'33.2%', chg:'▲ +33.9% vs FY24', note:'NAM growth + Baltimore Scrap & NEMT acquisitions. US tariff sensitivity not disclosed.', fill:'#0D2B4E', op:0.92, lbl:'USA\n$2.49B', r:22 },
+  TUR:{ name:'Turkey',        val:951.9,  pct:'12.7%', chg:'▼ −23.0% vs FY24', note:'Steel manufacturing demand weakened on global ferrous oversupply.',    fill:'#B83232', op:0.85, lbl:'Turkey\n$952M', r:14 },
+  CHN:{ name:'China',         val:774.6,  pct:'10.3%', chg:'▲ +8.8% vs FY24',  note:'Secondary processing growing. China exports steel but imports scrap for re-processing.', fill:'#2E7FAA', op:0.85, lbl:'China\n$775M', r:14 },
+  AUS:{ name:'Australia',     val:450.9,  pct:'6.0%',  chg:'▲ +2.0% vs FY24',  note:'Domestic ANZ sales to Australian manufacturers. Not double-counted with ANZ segment.', fill:'#C8932A', op:0.82, lbl:'Australia\n$451M', r:12 },
+  IND:{ name:'India',         val:446.8,  pct:'6.0%',  chg:'▼ −24.1% vs FY24', note:'Ferrous import demand fell amid domestic steel overcapacity in India.', fill:'#B83232', op:0.72, lbl:'India\n$447M', r:12 },
+  THA:{ name:'Thailand',      val:407.5,  pct:'5.4%',  chg:'▲ New entry FY25 — no prior', note:'GTO SE Asian route reclassification + new secondary processing customers.', fill:'#C87020', op:0.88, lbl:'Thailand★\n$408M', r:11 },
+  BGD:{ name:'Bangladesh',    val:0,      pct:'0.0%',  chg:'▼ −100% · Exited FY25', note:'UK Metal disposal severed the export conduit to Bangladeshi ship-breakers. Previously #4 country.', fill:'#aaaaaa', op:0.60, lbl:'Bangladesh\n$0 ✕', r:8 },
+  KOR:{ name:'South Korea',   val:null,   pct:'In Other 26.3%', chg:'Active — part of undisclosed "Other"', note:'Significant secondary steel market. Included in "Other" per AR Note 3.', fill:'#88B8CC', op:0.55, r:0 },
+  JPN:{ name:'Japan',         val:null,   pct:'In Other 26.3%', chg:'Active — part of undisclosed "Other"', note:'Active market. Included in "Other" per AR Note 3.',           fill:'#88B8CC', op:0.50, r:0 },
+  NZL:{ name:'New Zealand',   val:null,   pct:'In Other 26.3%', chg:'ANZ region — part of "Other"',         note:'ANZ domestic region. Included in "Other" per AR Note 3.',     fill:'#88B8CC', op:0.50, r:0 },
+  MYS:{ name:'Malaysia',      val:null,   pct:'In Other 26.3%', chg:'GTO SE Asia — part of "Other"',        note:'GTO SE Asian trade. Included in "Other" per AR Note 3.',       fill:'#88B8CC', op:0.48, r:0 },
+  VNM:{ name:'Vietnam',       val:null,   pct:'In Other 26.3%', chg:'GTO SE Asia — part of "Other"',        note:'GTO SE Asian trade. Included in "Other" per AR Note 3.',       fill:'#88B8CC', op:0.48, r:0 },
+  DEU:{ name:'Germany',       val:null,   pct:'In Other 26.3%', chg:'European market — part of "Other"',    note:'European market. Included in "Other" per AR Note 3.',          fill:'#88B8CC', op:0.42, r:0 },
+  GBR:{ name:'United Kingdom',val:null,   pct:'In Other 26.3%', chg:'Post-disposal residual — part of "Other"', note:'Residual trade post UK Metal divestment.',               fill:'#88B8CC', op:0.40, r:0 },
+  CAN:{ name:'Canada',        val:null,   pct:'In Other 26.3%', chg:'NAM region — part of "Other"',         note:'Included in "Other" per AR Note 3.',                           fill:'#88B8CC', op:0.42, r:0 },
+  SGP:{ name:'Singapore',     val:null,   pct:'In Other 26.3%', chg:'GTO hub — part of "Other"',            note:'GTO Singapore hub. Included in "Other" per AR Note 3.',       fill:'#88B8CC', op:0.45, r:0 },
+};
+
+const tip = document.getElementById('mapTip');
+function showTip(e, d) {
+  const i = SD[d.id]; if (!i) return;
+  document.getElementById('mtName').textContent = i.name;
+  document.getElementById('mtVal').textContent  = i.val !== null ? `$${i.val.toFixed(1)}M · ${i.pct}` : i.pct;
+  document.getElementById('mtChg').textContent  = i.chg;
+  document.getElementById('mtNote').textContent = i.note;
+  tip.style.display = 'block'; moveTip(e);
+}
+function moveTip(e) {
+  let x = e.clientX+14, y = e.clientY+14;
+  if (x+225 > window.innerWidth)  x = e.clientX-230;
+  if (y+130 > window.innerHeight) y = e.clientY-130;
+  tip.style.left = x+'px'; tip.style.top = y+'px';
+}
+function hideTip() { tip.style.display='none'; }
+
+
+/* ═══════════════════════════════════
+   WORLD MAP — institutional annotation style
+   Inspired by financial press map design:
+   - Grey base, coloured active countries
+   - Ranked number badges
+   - Leader lines pulling labels out of clusters
+   - Clean white background, no ocean fill
+═══════════════════════════════════ */
+window.addEventListener('load', () => {
+  const mc = document.getElementById('mapContainer');
+  const W  = mc.clientWidth  || 560;
+  const H  = mc.clientHeight || 240;
+  const svg = d3.select('#worldMapSvg').attr('width',W).attr('height',H);
+
+  // Revenue rank order
+  const RANK = { USA:1, TUR:2, CHN:3, AUS:4, IND:5, THA:6, BGD:7 };
+
+  // Projection: centred on Eurasia so APAC cluster has room
+ const proj = d3.geoMercator()
+    .scale(W / 5.4)
+    .center([23, 20])
+    .translate([W * 0.50, H * 0.52]);
+  const pg = d3.geoPath().projection(proj);
+
+  // Clip to remove poles — only show -65S to 75N
+  svg.append('defs').append('clipPath').attr('id','mapClip')
+    .append('rect').attr('x',0).attr('y',0).attr('width',W).attr('height',H);
+
+  svg.append('rect').attr('width',W).attr('height',H)
+    .attr('fill','#F4F7FA').attr('rx',5);
+
+  d3.json('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
+    .then(world => {
+
+     // ── BASE LAYER: filter Antarctica, neutral grey ──
+      svg.selectAll('.cb')
+        .data(world.features.filter(f => !SD[f.id] && f.id !== 'ATA'))
+        .join('path').attr('class','cb')
+        .attr('d', pg)
+        .attr('fill','#C8D4DC')
+        .attr('stroke','#fff')
+        .attr('stroke-width', 0.5);
+
+      // ── SIMS ACTIVE COUNTRIES — strong fills ──
+      svg.selectAll('.cs')
+        .data(world.features.filter(f => SD[f.id] && SD[f.id].op > 0.3))
+        .join('path').attr('class','cs')
+        .attr('d', pg)
+        .attr('fill', d => SD[d.id].fill)
+        .attr('fill-opacity', d => SD[d.id].op)
+        .attr('stroke','#fff')
+        .attr('stroke-width', 0.8)
+        .style('cursor','pointer')
+        .on('mouseenter', function(e,d){
+          d3.select(this).attr('fill-opacity', SD[d.id].op);
+          showTip(e,d);
+        })
+        .on('mousemove', moveTip)
+        .on('mouseleave', function(e,d){
+          d3.select(this).attr('fill-opacity', SD[d.id].op * 0.75);
+          hideTip();
+        });
+
+      // ── Bangladesh: exited — grey hatched ──
+      const bgdFeat = world.features.find(f => f.id === 'BGD');
+      if (bgdFeat) {
+        svg.append('path').datum(bgdFeat)
+          .attr('d', pg)
+          .attr('fill','#bbb')
+          .attr('fill-opacity', 0.5)
+          .attr('stroke','#fff')
+          .attr('stroke-width', 0.6);
+      }
+
+      // ── COMPUTE CENTROIDS ──
+      const centroids = {};
+      ['USA','TUR','CHN','AUS','IND','THA','BGD'].forEach(iso => {
+        const feat = world.features.find(f => f.id === iso);
+        if (!feat) return;
+        const c = pg.centroid(feat);
+        if (c && !isNaN(c[0])) centroids[iso] = c;
+      });
+
+      // ── LEADER LINE ANCHOR POINTS ──
+      // Manually position label anchors to avoid overlap
+      // Format: [labelX, labelY, lineEndX, lineEndY]
+  const labelPos = {
+        TUR: { lx: W*0.44,  ly: H*0.27, note:'$952M · ▼−23.0%',   align:'middle' },
+        USA: { lx: W*0.14,  ly: H*0.28, note:'$2,488M · ▲+33.9%', align:'left'   },
+        CHN: { lx: W*0.80,  ly: H*0.22, note:'$775M · ▲+8.8%',    align:'end'    },
+        AUS: { lx: W*0.82,  ly: H*0.78, note:'$451M · ▲+2.0%',    align:'end'    },
+        IND: { lx: W*0.63,  ly: H*0.48, note:'$447M · ▼−24.1%',   align:'middle' },
+        THA: { lx: W*0.76,  ly: H*0.58, note:'$408M · NEW',        align:'middle' },
+        BGD: { lx: W*0.60,  ly: H*0.10, note:'$0 · OUT',           align:'middle' },
+      };
+
+      const rankColors = {
+        USA:'#0D2B4E', TUR:'#B83232', CHN:'#2E7FAA',
+        AUS:'#C8932A', IND:'#C05050', THA:'#C87020', BGD:'#999'
+      };
+      const rankTextCol = {
+        USA:'#fff', TUR:'#fff', CHN:'#fff',
+        AUS:'#fff', IND:'#fff', THA:'#fff', BGD:'#fff'
+      };
+
+      // ── DRAW ANNOTATIONS ──
+      Object.entries(labelPos).forEach(([iso, pos]) => {
+        const c = centroids[iso];
+        if (!c) return;
+        const rank = RANK[iso];
+        const col  = rankColors[iso];
+        const lp   = pos;
+        const isExited = iso === 'BGD';
+
+        // ── Leader line ──
+        svg.append('line')
+          .attr('x1', c[0]).attr('y1', c[1])
+          .attr('x2', lp.lx).attr('y2', lp.ly - 8)
+          .attr('stroke', isExited ? '#aaa' : col)
+          .attr('stroke-width', isExited ? 0.8 : 1.2)
+          .attr('stroke-dasharray', isExited ? '3,2' : 'none')
+          .attr('opacity', 0.6)
+          .style('pointer-events','none');
+
+        // ── Rank badge circle ──
+        const bx = lp.lx + (lp.align === 'left' ? 0 : 0);
+        const by = lp.ly - 8;
+        svg.append('circle')
+          .attr('cx', bx).attr('cy', by)
+          .attr('r', isExited ? 7 : 9)
+          .attr('fill', isExited ? '#aaa' : col)
+          .attr('stroke','#fff').attr('stroke-width', 1.5)
+          .style('pointer-events','none');
+
+        svg.append('text')
+          .attr('x', bx).attr('y', by + 1)
+          .attr('text-anchor','middle').attr('dominant-baseline','middle')
+          .attr('fill', rankTextCol[iso])
+          .attr('font-family',"'Syne',sans-serif")
+          .attr('font-size', isExited ? 7 : 8)
+          .attr('font-weight','800')
+          .style('pointer-events','none')
+          .text(isExited ? '✕' : rank);
+
+        // ── Country name ──
+         // ── Country name (above badge) ──
+        const nameAnchor = lp.align === 'end' ? 'end'
+                         : lp.align === 'left' ? 'start' : 'middle';
+        const nameX = lp.align === 'end'  ? bx - 13
+                    : lp.align === 'left' ? bx + 13
+                    : bx;
+
+        svg.append('text')
+          .attr('x', nameX).attr('y', by - 11)
+          .attr('text-anchor', nameAnchor)
+          .attr('fill', isExited ? '#999' : '#1A2B3C')
+          .attr('font-family',"'Syne',sans-serif")
+          .attr('font-size', 9).attr('font-weight','700')
+          .style('pointer-events','none')
+          .text(SD[iso].name);
+
+        svg.append('text')
+          .attr('x', nameX).attr('y', by + 1)
+          .attr('text-anchor', nameAnchor)
+          .attr('fill', isExited ? '#bbb' : col)
+          .attr('font-family',"'JetBrains Mono',monospace")
+          .attr('font-size', 7).attr('font-weight','600')
+          .style('pointer-events','none')
+          .text(lp.note);
+      });
+
+      // ── Footprint note ──
+      svg.append('rect')
+        .attr('x', W-310).attr('y', H-18)
+        .attr('width', 304).attr('height', 13)
+        .attr('rx', 3).attr('fill','rgba(13,43,78,0.06)');
+      svg.append('text')
+        .attr('x', W-156).attr('y', H-9)
+        .attr('text-anchor','middle')
+        .attr('fill','#8898AA').attr('font-family',"'Inter',sans-serif")
+        .attr('font-size', 7)
+        .text('Sims: 13 countries · 127 metals sites · 20 SLS facilities');
+
+    }).catch(() => {
+      svg.append('text').attr('x',W/2).attr('y',H/2)
+        .attr('text-anchor','middle').attr('fill','#8898AA').attr('font-size',11)
+        .text('Map loads on GitHub Pages (requires internet)');
+    });
+});
+
+/* ═══════════════════════════════════
+   TREEMAP — Revenue by country FY25
+═══════════════════════════════════ */
+window.addEventListener('load', () => {
+  const el = document.getElementById('treemapSvg');
+  const W  = el.parentElement.clientWidth  || 180;
+  const H  = el.parentElement.clientHeight || 130;
+  const svg = d3.select('#treemapSvg').attr('width',W).attr('height',H);
+
+  const data = {
+    name:'root',
+    children:[
+      { name:'USA',        value:2488.6, fill:'#0D2B4E', text:'USA\n$2.49B\n33.2%',   light:false },
+      { name:'Turkey',     value:951.9,  fill:'#B83232', text:'Turkey\n$952M',          light:false },
+      { name:'China',      value:774.6,  fill:'#2E7FAA', text:'China\n$775M',           light:false },
+      { name:'Other',      value:1973.7, fill:'#5F7F9A', text:'Other\n$1.97B\n26.3%',  light:false },
+      { name:'Australia',  value:450.9,  fill:'#C8932A', text:'Aust.\n$451M',           light:false },
+      { name:'India',      value:446.8,  fill:'#C05050', text:'India\n$447M',           light:false },
+      { name:'Thailand',   value:407.5,  fill:'#C87020', text:'Thai.\n$408M★',         light:false },
+      { name:'Bangladesh', value:50,     fill:'#aaaaaa', text:'B\'desh\n$0 ✕',         light:true  },
+    ]
+  };
+
+  const root = d3.hierarchy(data).sum(d => d.value);
+  d3.treemap().size([W, H]).padding(2).round(true)(root);
+
+  const cell = svg.selectAll('g').data(root.leaves()).join('g')
+    .attr('transform', d => `translate(${d.x0},${d.y0})`);
+
+  cell.append('rect')
+    .attr('width',  d => d.x1 - d.x0)
+    .attr('height', d => d.y1 - d.y0)
+    .attr('rx', 3)
+    .attr('fill', d => d.data.fill)
+    .attr('opacity', 0.90)
+    .attr('stroke','#fff').attr('stroke-width',1.5);
+
+  // Multi-line text inside each cell
+  cell.each(function(d) {
+    const cw = d.x1 - d.x0;
+    const ch = d.y1 - d.y0;
+    if (cw < 28 || ch < 20) return;
+
+    const lines = d.data.text.split('\n');
+    const g = d3.select(this);
+
+    lines.forEach((line, i) => {
+      const isFirst = i === 0;
+      const isVal   = i === 1;
+      g.append('text')
+        .attr('x', cw / 2)
+        .attr('y', () => {
+          // Vertically centre the block
+          const totalH = lines.length * (isFirst ? 9 : 8);
+          const startY = (ch - totalH) / 2 + 9;
+          return startY + i * (isFirst ? 9 : 8);
+        })
+        .attr('text-anchor','middle')
+        .attr('fill', '#fff')
+        .attr('font-family', isVal ? "'JetBrains Mono',monospace" : "'Syne',sans-serif")
+        .attr('font-size', isFirst ? Math.min(9, cw/line.length*1.6) : Math.min(8, cw/line.length*1.5))
+        .attr('font-weight', isFirst ? '700' : '600')
+        .attr('opacity', isVal ? 0.92 : 0.85)
+        .style('pointer-events','none')
+        .text(line);
+    });
+  });
+});
+
+/* ═══════════════════════════════════
+   CHART.JS
+═══════════════════════════════════ */
+Chart.defaults.font.family="'Inter',sans-serif";
+Chart.defaults.font.size=9;
+Chart.defaults.color='#8898AA';
+Chart.defaults.plugins.legend.display=false;
+Chart.defaults.plugins.tooltip.backgroundColor='#0D2B4E';
+Chart.defaults.plugins.tooltip.titleFont={family:"'Syne',sans-serif",weight:'700',size:10};
+Chart.defaults.plugins.tooltip.bodyFont={family:"'JetBrains Mono',monospace",size:9};
+Chart.defaults.plugins.tooltip.padding=8;
+Chart.defaults.plugins.tooltip.cornerRadius=5;
+
+(function(){
+  const ctx = document.getElementById('countryBar');
+  new Chart(ctx,{type:'bar',
+    data:{
+      labels:['USA','Turkey','China','Aust.','India','Thai.','Bangla.','Other'],
+      datasets:[
+        {label:'FY25',data:[2488.6,951.9,774.6,450.9,446.8,407.5,0,1973.7],
+         backgroundColor:['rgba(13,43,78,.88)','rgba(184,50,50,.88)','rgba(46,127,170,.85)',
+                          'rgba(200,147,42,.82)','rgba(176,50,50,.72)','rgba(200,112,32,.88)',
+                          'rgba(170,170,170,.4)','rgba(95,127,154,.62)'],
+         borderRadius:3,borderSkipped:false},
+        {label:'FY24',data:[1859.0,1236.3,711.9,442.0,588.9,0,518.9,1838.4],
+         backgroundColor:'rgba(13,43,78,.09)',borderRadius:3,borderSkipped:false,
+         borderColor:'rgba(13,43,78,.2)',borderWidth:1}
+      ]
+    },
+    options:{
+	indexAxis:'y',
+	responsive:true,
+	maintainAspectRatio:false,
+      plugins:{
+        legend:{display:true,position:'top',align:'end',labels:{boxWidth:8,boxHeight:8,font:{size:8},color:'#8898AA',padding:4,
+          generateLabels:()=>[
+            {text:'FY25',fillStyle:'rgba(13,43,78,.85)',strokeStyle:'transparent'},
+            {text:'FY24',fillStyle:'rgba(13,43,78,.1)',strokeStyle:'rgba(13,43,78,.2)',lineWidth:1}
+          ]
+        }},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label}: $${c.parsed.y.toFixed(1)}M`}}
+      },
+     scales:{
+        x:{grid:{display:false},border:{display:true,color:'#DDE3EC'},ticks:{font:{size:8,family:"'JetBrains Mono',monospace"},color:'#8898AA',callback:v=>'$'+(v/1000).toFixed(1)+'B',maxTicksLimit:4}},
+        y:{grid:{display:false},border:{display:false},ticks:{font:{size:7.5,weight:'600'},color:'#2C3E50',maxRotation:0}}
+      }
+    }
+  });
+})();
+
+(function(){
+  const ctx = document.getElementById('mixBar');
+  new Chart(ctx,{type:'bar',
+    data:{
+      labels:['FY24','FY25'],
+      datasets:[
+        {label:'Ferrous',    data:[67.9,59.8],backgroundColor:'rgba(13,43,78,.72)',  borderRadius:0,borderSkipped:false},
+        {label:'Non-Ferrous',data:[26.6,33.6],backgroundColor:'rgba(46,127,170,.82)',borderRadius:0,borderSkipped:false},
+        {label:'SLS/Other',  data:[5.5,6.6],  backgroundColor:'rgba(109,63,187,.78)',borderRadius:[3,3,0,0],borderSkipped:false}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:true,position:'top',align:'end',labels:{boxWidth:8,boxHeight:8,font:{size:7.5},color:'#8898AA',padding:4,
+          generateLabels:()=>[
+            {text:'Ferrous',    fillStyle:'rgba(13,43,78,.72)',  strokeStyle:'transparent'},
+            {text:'Non-Ferrous',fillStyle:'rgba(46,127,170,.82)',strokeStyle:'transparent'},
+            {text:'SLS/Other',  fillStyle:'rgba(109,63,187,.78)',strokeStyle:'transparent'}
+          ]
+        }},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toFixed(1)}%`}}
+      },
+      scales:{
+        x:{stacked:true,grid:{display:false},border:{display:false},ticks:{font:{size:10,weight:'700'},color:'#0D2B4E'}},
+        y:{stacked:true,grid:{display:false},border:{display:true,color:'#DDE3EC'},
+           ticks:{font:{size:8,family:"'JetBrains Mono',monospace"},color:'#8898AA',callback:v=>v+'%',maxTicksLimit:4},max:100}
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

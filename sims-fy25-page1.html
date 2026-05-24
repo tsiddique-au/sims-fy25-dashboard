@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 1: Executive Snapshot</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — Sims Official Light Corporate
+═══════════════════════════════════════════ */
+:root {
+  --white:       #FFFFFF;
+  --bg:          #F4F6F9;
+  --surface:     #FFFFFF;
+  --surface2:    #EDF0F5;
+  --navy:        #0D2B4E;
+  --navy-lt:     #1A3F6F;
+  --teal:        #2E7FAA;
+  --teal-lt:     #4DA0C8;
+  --teal-bg:     #EBF5FB;
+  --gold:        #C8932A;
+  --gold-lt:     #E8AC3A;
+  --gold-bg:     #FDF6E8;
+  --green:       #1A7A4A;
+  --green-bg:    #EAF5EE;
+  --red:         #B83232;
+  --red-bg:      #FDF0F0;
+  --amber:       #C87020;
+  --amber-bg:    #FEF5E8;
+  --charcoal:    #2C3E50;
+  --grey:        #8898AA;
+  --grey-lt:     #C2CBD6;
+  --border:      #DDE3EC;
+
+  --font-head:   'Syne', sans-serif;
+  --font-body:   'Inter', sans-serif;
+  --font-mono:   'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 13px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  background: #E8EBF0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ═══════════════════════════════════════════
+   A4 LANDSCAPE PAGE CONTAINER
+   297mm × 210mm → at 96dpi ≈ 1122px × 794px
+═══════════════════════════════════════════ */
+.page {
+  width: 1122px;
+  height: 794px;
+  /* nav bar is 30px — content area self-adjusts via flex */
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE HEADER
+═══════════════════════════════════════════ */
+.page-header {
+  background: var(--navy);
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ph-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.ph-brand-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+.ph-brand-sub {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--teal-lt);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+.ph-centre {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.ph-right {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT AREA
+═══════════════════════════════════════════ */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 24px 0;
+  gap: 8px;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   EXECUTIVE SUMMARY BOX
+═══════════════════════════════════════════ */
+.exec-summary {
+  background: var(--surface2);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 6px 6px 0;
+  padding: 9px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.es-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.es-text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--charcoal);
+  line-height: 1.55;
+  font-weight: 400;
+}
+.es-text strong { color: var(--navy); font-weight: 600; }
+.es-text .anz-warn { color: var(--red); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   ROW LAYOUT HELPERS
+═══════════════════════════════════════════ */
+.row {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   HERO KPI CARDS
+═══════════════════════════════════════════ */
+.hero-kpi-row {
+  display: flex;
+  gap: 8px;
+}
+.hero-card {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--teal);
+  border-radius: 6px;
+  padding: 10px 14px 8px;
+  position: relative;
+}
+.hero-card.gold-top { border-top-color: var(--gold); }
+
+.hc-label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--grey);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.hc-value {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hc-value.gold { color: var(--gold); }
+.hc-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.hc-change.pos { background: var(--green-bg); color: var(--green); }
+.hc-change.neg { background: var(--red-bg); color: var(--red); }
+.hc-change.gold-tag { background: var(--gold-bg); color: var(--gold); font-size: 11px; }
+.hc-sub {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--grey);
+  margin-top: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   SECONDARY KPI STRIP
+═══════════════════════════════════════════ */
+.sec-strip {
+  display: flex;
+  background: var(--navy);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.sec-kpi {
+  flex: 1;
+  padding: 7px 12px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sec-kpi:last-child { border-right: none; }
+.sk-label {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sk-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+.sk-change {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+}
+.sk-change.pos { color: #6EE7A0; }
+.sk-change.neg { color: #F87171; }
+.sk-change.warn { color: #FCD34D; }
+
+/* ═══════════════════════════════════════════
+   MAIN 3-COLUMN ZONE
+═══════════════════════════════════════════ */
+.main-zone {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Chart Cards ── */
+.chart-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px 8px;
+  display: flex;
+  flex-direction: column;
+}
+.cc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.cc-title {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cc-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 12px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+.cc-sub {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--grey);
+}
+.cc-canvas {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* ── ANZ Spotlight ── */
+.anz-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.anz-header {
+  background: var(--navy);
+  padding: 8px 12px;
+  flex-shrink: 0;
+}
+.anz-header-title {
+  font-family: var(--font-head);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.anz-header-sub {
+  font-size: 8.5px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-body);
+  margin-top: 1px;
+}
+.anz-body {
+  padding: 10px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.anz-metric-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.anz-metric-row:last-of-type { border-bottom: none; }
+.am-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+.am-value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy);
+}
+.am-chg {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  min-width: 54px;
+  text-align: right;
+}
+.am-chg.neg { color: var(--red); }
+.am-chg.pos { color: var(--green); }
+
+.anz-warn-box {
+  background: var(--amber-bg);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 4px 4px 0;
+  padding: 7px 10px;
+  flex-shrink: 0;
+}
+.awb-title {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+.awb-text {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   BOTTOM STRIP
+═══════════════════════════════════════════ */
+.bottom-strip {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0 5px;
+  flex-shrink: 0;
+  align-items: stretch;
+}
+.bottom-strip .b-divider {
+  width: 1px;
+  background: var(--border);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+.b-kpi {
+  flex: 1;
+  min-width: 0;
+  background: var(--surface2);
+  border-radius: 5px;
+  padding: 5px 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.bk-label {
+  font-family: var(--font-body);
+  font-size: 8px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bk-value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bk-value.warn { color: var(--amber); }
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── PAGE HEADER ── -->
+  <header class="page-header">
+    <div class="ph-brand">
+      <span class="ph-brand-name">SIMS LIMITED</span>
+      <span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span>
+    </div>
+    <div class="ph-centre">FY25 AT A GLANCE</div>
+    <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+  </header>
+
+  <!-- ── CONTENT ── -->
+  <main class="content">
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="exec-summary">
+      <span class="es-label">Executive<br/>Summary</span>
+      <p class="es-text">
+        FY25 marked a decisive financial turnaround for Sims Limited. Group Underlying EBITDA surged <strong>+48.1% to $430.0M</strong>, driven by North America Metal margin expansion (<strong>+67.5% EBITDA</strong>) and a record SA Recycling JV contribution of <strong>$120.0M</strong>. Underlying EBIT recovered <strong>+198%</strong> to <strong>$174.9M</strong> and NPAT returned to profitability at <strong>$83.1M</strong>. These gains partially offset a structural headwind in ANZ, where <span class="anz-warn">Chinese steel export pressure compressed trading margins 190bps</span> and EBITDA fell <span class="anz-warn">−7.9%</span>. Sims Lifecycle Services accelerated strongly (+22% revenue, +84% EBIT), positioning for the AI-driven data centre cycle. Net debt fell 19.3% to $332.3M; free cash flow turned positive at $106.8M. Full-year dividend increased <strong>+130% to 23.0¢</strong> per share.
+      </p>
+    </div>
+
+    <!-- HERO KPI ROW -->
+    <div class="hero-kpi-row">
+      <div class="hero-card">
+        <div class="hc-label">Sales Revenue</div>
+        <div class="hc-value">$7,494M</div>
+        <div class="hc-change pos">▲ +4.1% vs FY24</div>
+        <div class="hc-sub">FY24: $7,195.4M &nbsp;|&nbsp; CC: +3.2%</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Underlying EBITDA</div>
+        <div class="hc-value">$430.0M</div>
+        <div class="hc-change pos">▲ +48.1% vs FY24</div>
+        <div class="hc-sub">FY24: $290.3M &nbsp;|&nbsp; Margin: 5.7%</div>
+      </div>
+      <div class="hero-card gold-top">
+        <div class="hc-label">Underlying EBIT</div>
+        <div class="hc-value gold">$174.9M</div>
+        <div class="hc-change gold-tag">▲ +198% vs FY24</div>
+        <div class="hc-sub">FY24: $58.7M &nbsp;|&nbsp; NPAT: $83.1M (turnaround)</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Operating Cash Flow</div>
+        <div class="hc-value">$297.1M</div>
+        <div class="hc-change pos">▲ +46.7% vs FY24</div>
+        <div class="hc-sub">FCF: $106.8M (FY24: −$41.7M)</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Full-Year DPS</div>
+        <div class="hc-value">23.0¢</div>
+        <div class="hc-change pos">▲ +130% vs FY24</div>
+        <div class="hc-sub">FY24: 10.0¢ &nbsp;|&nbsp; 100% franked</div>
+      </div>
+    </div>
+
+    <!-- SECONDARY STRIP -->
+    <div class="sec-strip">
+      <div class="sec-kpi">
+        <div class="sk-label">Net Debt</div>
+        <div class="sk-value">$332.3M</div>
+        <div class="sk-change pos">▼ −19.3% (FY24: $411.9M)</div>
+      </div>
+      <div class="sec-kpi" style="border-top: 2px solid var(--amber); margin-top: -1px; background: rgba(200,112,32,0.07);">
+		<div class="sk-label" style="color:#FCD34D;">Gearing Ratio</div>
+		<div class="sk-value" style="color:#FCD34D;">18.8%</div>
+		<div class="sk-change warn">⚠ Above 15% target</div>
+		</div>
+      <div class="sec-kpi">
+        <div class="sk-label">ROIC</div>
+        <div class="sk-value">4.9%</div>
+        <div class="sk-change pos">▲ +3.1ppts (FY24: 1.8%)</div>
+      </div>
+      <div class="sec-kpi">
+        <div class="sk-label">EBITDA Margin</div>
+        <div class="sk-value">5.7%</div>
+        <div class="sk-change pos">▲ +1.7ppts (FY24: 4.0%)</div>
+      </div>
+      <div class="sec-kpi">
+        <div class="sk-label">Trading Margin</div>
+        <div class="sk-value">21.0%</div>
+        <div class="sk-change pos">▲ +1.5ppts (FY24: 19.5%)</div>
+      </div>
+      <div class="sec-kpi">
+        <div class="sk-label">Prop. Sales Volume</div>
+        <div class="sk-value">6,341kt</div>
+        <div class="sk-change neg">▼ −3.8% vs FY24</div>
+      </div>
+      <div class="sec-kpi">
+        <div class="sk-label">Underlying EPS</div>
+        <div class="sk-value">48.9¢</div>
+        <div class="sk-change pos">▲ vs −13.8¢ FY24</div>
+      </div>
+      <div class="sec-kpi" style="border-top: 2px solid var(--amber); margin-top: -1px; background: rgba(200,112,32,0.07);">
+		<div class="sk-label" style="color:#FCD34D;">Eff. Tax Rate</div>
+		<div class="sk-value" style="color:#FCD34D;">93.1%</div>
+		<div class="sk-change warn">⚠ Structural distortion</div>
+	  </div>
+    </div>
+
+    <!-- MAIN 3-COLUMN ZONE -->
+    <div class="main-zone">
+
+      <!-- LEFT: EBITDA BRIDGE -->
+      <div class="chart-card" style="flex: 1.05;">
+        <div class="cc-header">
+          <div>
+            <div class="cc-title">EBITDA Bridge FY24 → FY25</div>
+            <div class="cc-sub">A$M Underlying — by driver</div>
+          </div>
+        </div>
+        <div class="cc-canvas">
+          <canvas id="bridgeChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CENTRE: ANZ SPOTLIGHT -->
+      <div class="anz-card" style="width: 256px; flex-shrink: 0;">
+        <div class="anz-header">
+          <div class="anz-header-title">⚡ ANZ Performance Spotlight</div>
+          <div class="anz-header-sub">Australia &amp; New Zealand Metal Segment</div>
+        </div>
+        <div class="anz-body">
+          <div class="anz-metric-row">
+            <span class="am-label">Revenue</span>
+            <span class="am-value">$1,575.5M</span>
+            <span class="am-chg neg">▼ −1.2%</span>
+          </div>
+          <div class="anz-metric-row">
+            <span class="am-label">Trading Margin</span>
+            <span class="am-value">23.8%</span>
+            <span class="am-chg neg">▼ −1.9ppts</span>
+          </div>
+          <div class="anz-metric-row">
+            <span class="am-label">EBITDA</span>
+            <span class="am-value">$134.2M</span>
+            <span class="am-chg neg">▼ −7.9%</span>
+          </div>
+          <div class="anz-metric-row">
+            <span class="am-label">EBIT</span>
+            <span class="am-value">$72.2M</span>
+            <span class="am-chg neg">▼ −24.4%</span>
+          </div>
+          <div class="anz-metric-row" style="border-bottom:none;">
+            <span class="am-label">Sales Volume</span>
+            <span class="am-value">1,590kt</span>
+            <span class="am-chg neg">▼ −0.2%</span>
+          </div>
+          <div class="anz-warn-box">
+            <div class="awb-title">⚠ CHINA STEEL HEADWIND</div>
+            <div class="awb-text">Elevated Chinese steel exports into Asia suppressed ANZ ferrous margins throughout FY25. Domestic conditions deteriorated, cutting trading margin 190bps. Zorba non-ferrous gains provided partial offset. ANZ EBIT fell 24.4% — segment's weakest margin since FY22.</div>
+          </div>
+        </div>
+      </div>
+
+       <!-- RIGHT: SEGMENT HEATMAP -->
+      <div class="chart-card" style="flex: 0.95;">
+        <div class="cc-header">
+          <div>
+            <div class="cc-title">Strategic Segment Signals</div>
+			<div class="cc-sub">FY25 vs FY24 · arrow = direction · value = magnitude</div>
+          </div>
+        </div>
+        <div class="cc-canvas" id="heatmapGrid" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:4px 2px;"></div>
+      </div>
+
+    </div><!-- /main-zone -->
+
+    <!-- BOTTOM STRIP -->
+    <div class="bottom-strip">
+      <div class="b-kpi">
+		<span class="bk-label">LTIFR — Record Low</span>
+		<span class="bk-value" style="color:var(--green);">0.11 ↓</span>
+      </div>
+      <div class="b-kpi">
+        <span class="bk-label">MSCI ESG Rating</span>
+        <span class="bk-value" style="color:var(--green);">AAA</span>
+      </div>
+      <div class="b-kpi">
+        <span class="bk-label">Net Debt / EBITDA</span>
+        <span class="bk-value">0.77×</span>
+      </div>
+      <div class="b-kpi">
+       <span class="bk-label">SAR JV ▲+17.4%</span>
+		<span class="bk-value">$120.0M</span>
+      </div>
+      <div class="b-kpi">
+		<span class="bk-label">SLS EBIT Growth</span>
+		<span class="bk-value" style="color:var(--teal);">+84.2%</span>
+	</div>
+	<div class="b-kpi">
+		<span class="bk-label">Total Capex FY25</span>
+		<span class="bk-value">$194.1M</span>
+		</div>
+	<div class="b-divider"></div>
+      <div class="b-kpi">
+        <span class="bk-label">Scope 1&amp;2 vs FY20</span>
+		<span class="bk-value" style="color:var(--green);">−49%</span>
+      </div>
+      <div class="b-kpi">
+        <span class="bk-label">Employees</span>
+        <span class="bk-value">~4,750</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── PAGE NAV ── -->
+  <nav class="page-nav">
+    <span class="nav-label">Navigate →</span>
+    <a class="nav-btn active" href="sims-fy25-page1.html">P1 · Executive Snapshot</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page2.html">P2 · Strategic Insights</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page3.html">P3 · Segment Performance</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page4.html">P4 · Market Exposure</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page5.html">P5 · Financial Position</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+  </nav>
+
+  <!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 1 OF 6 &nbsp;·&nbsp; EXECUTIVE SNAPSHOT</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+/* ═══════════════════════════════════════════
+   CHART DEFAULTS — Clean Light Corporate
+═══════════════════════════════════════════ */
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 10;
+Chart.defaults.color = '#8898AA';
+Chart.defaults.plugins.legend.display = false;
+Chart.defaults.plugins.tooltip.backgroundColor = '#0D2B4E';
+Chart.defaults.plugins.tooltip.titleFont = { family: "'Syne', sans-serif", weight: '700', size: 11 };
+Chart.defaults.plugins.tooltip.bodyFont = { family: "'JetBrains Mono', monospace", size: 10 };
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 6;
+
+/* ═══════════════════════════════════════════
+   CHART 1: EBITDA BRIDGE WATERFALL
+═══════════════════════════════════════════ */
+(function(){
+  const ctx = document.getElementById('bridgeChart');
+  if (!ctx) return;
+
+  // Waterfall: [base, float, visible]
+  // float = running subtotal below bar (for stacking illusion)
+  const labels  = [['FY24','Base'], ['NAM','Upside'], ['SAR','JV'], ['SLS','Growth'], ['Costs','Saved'], ['ANZ','Decline'], ['GTO','Recov.'], ['Other',''], ['FY25','Total']];
+  const changes = [290.3, 102.5, 17.8, 15.5, 8.9, -11.5, 16.6, -10.1, 430.0];
+
+  const floats = [];
+  const bars   = [];
+  const colors = [];
+
+  let running = 0;
+  changes.forEach((v, i) => {
+    const isFirst = i === 0;
+    const isLast  = i === changes.length - 1;
+    if (isFirst || isLast) {
+      floats.push(0);
+      bars.push(v);
+      colors.push(isLast ? '#C8932A' : '#0D2B4E');
+    } else if (v >= 0) {
+      floats.push(running);
+      bars.push(v);
+      colors.push('#1A7A4A');
+    } else {
+      floats.push(running + v);
+      bars.push(-v);
+      colors.push('#B83232');
+    }
+    if (!isLast) running += isFirst ? changes[0] : v;
+  });
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Float',
+          data: floats,
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          stack: 'stack',
+        },
+        {
+          label: 'Value',
+          data: bars,
+          backgroundColor: colors,
+          borderColor: 'transparent',
+          stack: 'stack',
+          borderRadius: 4,
+          borderSkipped: false,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              if (ctx.datasetIndex === 0) return null;
+              const i = ctx.dataIndex;
+              const v = changes[i];
+              const prefix = (i === 0 || i === changes.length-1) ? '' : (v >= 0 ? '+' : '');
+              return ` ${prefix}$${Math.abs(v).toFixed(1)}M`;
+            },
+            title: (items) => labels[items[0].dataIndex].replace('\n',' ')
+          },
+          filter: (item) => item.datasetIndex === 1,
+        },
+        datalabels: { display: false },
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          border: { display: false },
+          ticks: {
+            font: { size: 9, family: "'Inter', sans-serif" },
+            color: '#8898AA',
+            maxRotation: 0,
+          }
+        },
+        y: {
+          stacked: true,
+          grid: { display: false },
+          border: { display: false, dash: [0] },
+          ticks: {
+            font: { size: 9, family: "'JetBrains Mono', monospace" },
+            color: '#8898AA',
+            callback: v => '$' + v + 'M',
+            maxTicksLimit: 5,
+          },
+          min: 0,
+          max: 480,
+        }
+      }
+    }
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   CHART 2: STRATEGIC SEGMENT SIGNALS HEATMAP
+═══════════════════════════════════════════ */
+(function(){
+  const grid = document.getElementById('heatmapGrid');
+  if (!grid) return;
+
+  const metrics = [
+    {
+      key: 'Revenue',
+      values: { NAM:'+0.5%', ANZ:'−1.2%', SAR:'JV only', SLS:'+22.0%', GTO:'+28.1%' },
+      dir:    { NAM:1,       ANZ:-1,       SAR:0,         SLS:1,        GTO:1         },
+    },
+    {
+      key: 'EBITDA',
+      values: { NAM:'+67.5%', ANZ:'−7.9%', SAR:'+17.4%', SLS:'+51.0%', GTO:'Loss' },
+      dir:    { NAM:1,        ANZ:-1,       SAR:1,         SLS:1,        GTO:-1     },
+    },
+    {
+      key: 'EBIT Margin',
+      values: { NAM:'1.8%', ANZ:'4.6%', SAR:'n/a', SLS:'7.6%', GTO:'−0.4%' },
+      dir:    { NAM:1,      ANZ:-1,      SAR:0,     SLS:1,      GTO:-1      },
+    },
+    {
+      key: 'Trd Margin',
+      values: { NAM:'+3.4p', ANZ:'−1.9p', SAR:'n/a', SLS:'−0.4p', GTO:'+0.6p' },
+      dir:    { NAM:1,       ANZ:-1,       SAR:0,     SLS:2,       GTO:1       },
+    },
+    {
+      key: 'Position',
+      values: { NAM:'Recovery\nLeader', ANZ:'Margin\nPressure', SAR:'Silent\nEarner', SLS:'AI Growth\nEngine', GTO:'Breakeven\nPath' },
+      dir:    { NAM:1, ANZ:-1, SAR:2, SLS:1, GTO:2 },
+      isTag: true,
+    },
+  ];
+
+  const segments  = ['NAM','ANZ','SAR','SLS','GTO'];
+  const segColors = { NAM:'#2E7FAA', ANZ:'#B83232', SAR:'#C8932A', SLS:'#6D3FBB', GTO:'#5F7F9A' };
+
+  // Softer, more institutional fills
+  function cellStyle(dir, isTag) {
+    if (isTag) {
+      const map = {
+         1: { bg:'rgba(26,122,74,0.07)',  arrow:'#1A7A4A', val:'#2C3E50', bdr:'rgba(26,122,74,0.12)'  },
+        '-1':{ bg:'rgba(184,50,50,0.07)', arrow:'#B83232', val:'#2C3E50', bdr:'rgba(184,50,50,0.12)' },
+         2:  { bg:'rgba(200,112,32,0.07)',arrow:'#C87020', val:'#2C3E50', bdr:'rgba(200,112,32,0.12)' },
+         0:  { bg:'rgba(95,127,154,0.06)',arrow:'#8898AA', val:'#8898AA', bdr:'rgba(95,127,154,0.10)' },
+      };
+      return map[dir] || map[0];
+    }
+    const map = {
+       1: { bg:'rgba(26,122,74,0.06)',  arrow:'#1A7A4A', val:'#2C3E50', bdr:'rgba(26,122,74,0.10)'  },
+      '-1':{ bg:'rgba(184,50,50,0.06)', arrow:'#B83232', val:'#2C3E50', bdr:'rgba(184,50,50,0.10)' },
+       2:  { bg:'rgba(200,112,32,0.06)',arrow:'#C87020', val:'#2C3E50', bdr:'rgba(200,112,32,0.10)' },
+       0:  { bg:'rgba(95,127,154,0.04)',arrow:'#8898AA', val:'#8898AA', bdr:'rgba(95,127,154,0.08)' },
+    };
+    return map[dir] || map[0];
+  }
+
+  function arrowIcon(dir) {
+    if (dir ===  1) return '▲';
+    if (dir === -1) return '▼';
+    if (dir ===  2) return '▬';
+    return '—';
+  }
+
+  // ── HEADER ROW ──
+  const headerRow = document.createElement('div');
+  headerRow.style.cssText = 'display:flex;gap:3px;margin-bottom:3px;flex-shrink:0;align-items:center';
+
+  const corner = document.createElement('div');
+  corner.style.cssText = 'width:62px;flex-shrink:0';
+  headerRow.appendChild(corner);
+
+  segments.forEach(seg => {
+    const h = document.createElement('div');
+    h.style.cssText = `
+      flex:1;text-align:center;padding:3px 2px;border-radius:4px;
+      background:${segColors[seg]}0D;
+    `;
+    h.innerHTML = `<span style="
+      font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+      color:${segColors[seg]};letter-spacing:.08em;opacity:0.85
+    ">${seg}</span>`;
+    headerRow.appendChild(h);
+  });
+  grid.appendChild(headerRow);
+
+  // ── METRIC ROWS ──
+  metrics.forEach(metric => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:3px;flex:1;min-height:0;align-items:stretch';
+
+    const label = document.createElement('div');
+    label.style.cssText = `
+      width:62px;flex-shrink:0;display:flex;align-items:center;
+      font-family:'Inter',sans-serif;font-size:8px;font-weight:500;
+      color:#8898AA;letter-spacing:.03em;padding-right:4px;line-height:1.2;
+    `;
+    label.textContent = metric.key;
+    row.appendChild(label);
+
+    segments.forEach(seg => {
+      const d    = metric.dir[seg];
+      const val  = metric.values[seg];
+      const c    = cellStyle(d, metric.isTag);
+      const icon = arrowIcon(d);
+
+      const cell = document.createElement('div');
+      cell.style.cssText = `
+        flex:1;
+        background:${c.bg};
+        border:1px solid ${c.bdr};
+        border-radius:5px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:2px;
+        padding:5px 3px;
+        transition:transform .12s ease;
+        cursor:default;
+      `;
+
+      if (metric.isTag) {
+        // Position row — larger arrow, italic text label, no number
+        const lines = val.split('\n');
+        cell.innerHTML = `
+          <span style="
+            font-family:'JetBrains Mono',monospace;
+            font-size:11px;font-weight:900;
+            color:${c.arrow};line-height:1;
+          ">${icon}</span>
+          <span style="
+            font-family:'Inter',sans-serif;
+            font-size:7.5px;font-weight:600;font-style:italic;
+            color:${c.val};text-align:center;line-height:1.25;
+          ">${lines.join('<br/>')}</span>
+        `;
+      } else {
+        // Metric row — prominent arrow, smaller value
+        cell.innerHTML = `
+          <span style="
+            font-family:'JetBrains Mono',monospace;
+            font-size:10px;font-weight:800;
+            color:${c.arrow};line-height:1;
+          ">${icon}</span>
+          <span style="
+            font-family:'JetBrains Mono',monospace;
+            font-size:8.5px;font-weight:500;
+            color:${c.val};text-align:center;line-height:1;
+            opacity:0.85;
+          ">${val}</span>
+        `;
+      }
+
+      cell.addEventListener('mouseenter', () => {
+        cell.style.transform = 'scale(1.05)';
+        cell.style.position  = 'relative';
+        cell.style.zIndex    = '10';
+      });
+      cell.addEventListener('mouseleave', () => {
+        cell.style.transform = '';
+        cell.style.position  = '';
+        cell.style.zIndex    = '';
+      });
+
+      row.appendChild(cell);
+    });
+
+    grid.appendChild(row);
+  });
+})();
+</script>
+
+</body>
+</html>

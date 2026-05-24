@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sims Limited — FY25 At a Glance | Page 3: Segment Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --white:      #FFFFFF;
+  --bg:         #F4F6F9;
+  --surface2:   #EDF0F5;
+  --navy:       #0D2B4E;
+  --teal:       #2E7FAA;
+  --teal-bg:    #EBF5FB;
+  --gold:       #C8932A;
+  --gold-bg:    #FDF6E8;
+  --green:      #1A7A4A;
+  --green-bg:   #EAF5EE;
+  --red:        #B83232;
+  --red-bg:     #FDF0F0;
+  --amber:      #C87020;
+  --amber-bg:   #FEF5E8;
+  --purple:     #6D3FBB;
+  --purple-bg:  #F3EEFF;
+  --slate:      #5F7F9A;
+  --charcoal:   #2C3E50;
+  --grey:       #8898AA;
+  --border:     #DDE3EC;
+
+  /* segment accent colours */
+  --c-nam:  #2E7FAA;   /* teal  */
+  --c-anz:  #B83232;   /* red   — declining */
+  --c-sls:  #6D3FBB;   /* purple — high margin */
+  --c-sar:  #C8932A;   /* gold  — JV */
+  --c-gto:  #5F7F9A;   /* slate — loss-making */
+
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 12px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  background: #E8EBF0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ── A4 LANDSCAPE ── */
+.page {
+  width: 1122px;
+  height: 794px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+/* ── SHARED HEADER ── */
+.page-header {
+  background: var(--navy);
+  height: 44px; min-height: 44px;
+  display: flex; align-items: center;
+  padding: 0 28px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ph-brand { display: flex; align-items: baseline; gap: 10px; }
+.ph-brand-name { font-family: var(--font-head); font-weight: 700; font-size: 13px; color: #fff; letter-spacing: 0.04em; }
+.ph-brand-sub  { font-family: var(--font-body); font-size: 10px; color: #4DA0C8; letter-spacing: 0.06em; }
+.ph-centre     { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: #fff; letter-spacing: 0.2em; text-transform: uppercase; }
+.ph-right      { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.5); text-align: right; }
+
+/* ── PAGE TITLE BAR ── */
+.page-title-bar {
+  background: var(--surface2);
+  border-bottom: 2px solid var(--border);
+  padding: 7px 24px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.ptb-title {
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 700;
+  color: var(--navy);
+  display: flex; align-items: center; gap: 8px;
+}
+.ptb-title::before {
+  content: '';
+  display: block;
+  width: 4px; height: 18px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+.ptb-sub { font-size: 10px; color: var(--grey); font-family: var(--font-body); }
+.ptb-legend { display: flex; gap: 10px; align-items: center; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-family: var(--font-body); font-size: 9px; color: var(--grey); }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── CONTENT ── */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 9px 20px 0;
+  gap: 7px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── SEGMENT CARD STRIP ── */
+.seg-strip {
+  display: flex;
+  gap: 7px;
+  flex-shrink: 0;
+}
+.seg-card {
+  flex: 1;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  border-top: 3px solid;
+  background: var(--white);
+  padding: 9px 11px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.seg-card.nam { border-top-color: var(--c-nam); }
+.seg-card.anz { border-top-color: var(--c-anz); }
+.seg-card.sls { border-top-color: var(--c-sls); }
+.seg-card.sar { border-top-color: var(--c-sar); }
+.seg-card.gto { border-top-color: var(--c-gto); }
+
+.sc-code {
+  font-family: var(--font-mono);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  display: inline-block;
+  width: fit-content;
+}
+.sc-code.nam { background: #E8F4FA; color: var(--c-nam); }
+.sc-code.anz { background: var(--red-bg); color: var(--c-anz); }
+.sc-code.sls { background: var(--purple-bg); color: var(--c-sls); }
+.sc-code.sar { background: var(--gold-bg); color: var(--c-sar); }
+.sc-code.gto { background: var(--surface2); color: var(--c-gto); }
+
+.sc-name {
+  font-family: var(--font-head);
+  font-size: 10.5px; font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.sc-tagline {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+  line-height: 1.35;
+}
+
+.sc-divider { height: 1px; background: var(--border); margin: 1px 0; }
+
+.sc-kpi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.sc-kpi-label {
+  font-family: var(--font-body);
+  font-size: 8px; color: var(--grey);
+  letter-spacing: 0.05em;
+}
+.sc-kpi-val {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 700;
+  color: var(--navy);
+}
+.sc-kpi-chg {
+  font-family: var(--font-mono);
+  font-size: 9px; font-weight: 600;
+}
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.warn { color: var(--amber); }
+.muted { color: var(--slate); }
+
+.sc-margin-bar-wrap {
+  margin-top: 2px;
+}
+.sc-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 8px; color: var(--grey);
+  font-family: var(--font-body);
+  margin-bottom: 3px;
+}
+.sc-bar-track {
+  height: 5px;
+  background: var(--surface2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.sc-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ── LOWER ZONE: 2 CHARTS + TABLE ── */
+.lower-zone {
+  flex: 1;
+  display: flex;
+  gap: 7px;
+  min-height: 0;
+}
+
+.chart-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px 7px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.cc-title {
+  font-family: var(--font-head);
+  font-size: 10.5px; font-weight: 700;
+  color: var(--navy);
+  display: flex; align-items: center; gap: 5px;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+.cc-title::before {
+  content: '';
+  width: 3px; height: 11px;
+  background: var(--teal);
+  border-radius: 2px;
+  display: block;
+}
+.cc-sub {
+  font-size: 8.5px; color: var(--grey);
+  font-family: var(--font-body);
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.cc-canvas {
+  flex: 1; min-height: 0;
+  position: relative;
+}
+
+/* ── SUMMARY TABLE ── */
+.table-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px 7px;
+  display: flex;
+  flex-direction: column;
+  flex: 1.2;
+  min-height: 0;
+  overflow: hidden;
+}
+.seg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  flex: 1;
+}
+.seg-table thead tr {
+  background: var(--navy);
+}
+.seg-table thead th {
+  padding: 5px 8px;
+  color: rgba(255,255,255,0.75);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: right;
+  white-space: nowrap;
+}
+.seg-table thead th:first-child { text-align: left; }
+
+.seg-table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+.seg-table tbody tr:last-child { border-bottom: none; }
+.seg-table tbody tr:hover { background: var(--surface2); }
+
+.seg-table tbody td {
+  padding: 5px 8px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--charcoal);
+  white-space: nowrap;
+}
+.seg-table tbody td:first-child {
+  text-align: left;
+  font-family: var(--font-head);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.seg-table tbody td.pos { color: var(--green); }
+.seg-table tbody td.neg { color: var(--red); }
+.seg-table tbody td.warn { color: var(--amber); }
+.seg-table tbody td.muted { color: var(--slate); }
+
+.seg-table tfoot tr {
+  background: var(--surface2);
+  border-top: 2px solid var(--border);
+}
+.seg-table tfoot td {
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: right;
+}
+.seg-table tfoot td:first-child {
+  font-family: var(--font-head);
+  text-align: left;
+}
+
+/* segment colour pill in table */
+.seg-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.seg-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+
+/* ═══════════════════════════════════════════
+   PAGE NAV BAR
+═══════════════════════════════════════════ */
+.page-nav {
+  height: 32px;
+  min-height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-top: 2px solid var(--teal);
+}
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.nav-btn.active {
+  background: #245E7A;
+  color: #fff;
+  border-color: var(--teal);
+}
+.nav-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 2px;
+}
+
+.author-name{
+  color: #5B7F99;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE FOOTER
+═══════════════════════════════════════════ */
+.page-footer {
+  height: 24px;
+  min-height: 24px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.pf-left, .pf-right {
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  color: var(--grey);
+}
+.pf-centre {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--navy);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT RULES
+═══════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page {
+    width: 297mm;
+    height: 210mm;
+    box-shadow: none;
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="ph-brand">
+      <span class="ph-brand-name">SIMS LIMITED</span>
+      <span class="ph-brand-sub">ASX: SGM &nbsp;|&nbsp; NYSE: SGM</span>
+    </div>
+    <div class="ph-centre">FY25 AT A GLANCE</div>
+    <div class="ph-right">Year Ended 30 June 2025<br/>Continuing Operations Basis</div>
+  </header>
+
+  <!-- PAGE TITLE BAR -->
+  <div class="page-title-bar">
+    <div>
+      <div class="ptb-title">Segment Performance Deep Dive</div>
+      <div class="ptb-sub">Five operating segments · FY25 vs FY24 · Underlying basis · A$M</div>
+    </div>
+    <div class="ptb-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c-nam)"></div>NAM — North America Metal</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c-anz)"></div>ANZ — Aus &amp; NZ Metal</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c-sls)"></div>SLS — Lifecycle Services</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c-sar)"></div>SAR — SA Recycling JV</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c-gto)"></div>GTO — Global Trading</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- SEGMENT CARD STRIP -->
+    <div class="seg-strip">
+
+      <!-- NAM -->
+      <div class="seg-card nam">
+        <div class="sc-code nam">NAM</div>
+        <div class="sc-name">North America Metal</div>
+        <div class="sc-tagline">US &amp; Canada · Ferrous &amp; Non-Ferrous · EAF steel demand</div>
+        <div class="sc-divider"></div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Revenue</span>
+          <span class="sc-kpi-val">$4,503.6M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +0.5%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBITDA</span>
+          <span class="sc-kpi-val">$254.3M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +67.5%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBIT Margin</span>
+          <span class="sc-kpi-chg pos">1.8%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Volume</span>
+          <span class="sc-kpi-chg neg">4,751kt ▼ −5.0%</span>
+        </div>
+        <div class="sc-margin-bar-wrap">
+          <div class="sc-bar-label"><span>Trd Margin 20.9%</span><span style="color:var(--grey)">FY24: 17.5%</span></div>
+          <div class="sc-bar-track"><div class="sc-bar-fill" style="width:42%;background:var(--c-nam)"></div></div>
+        </div>
+      </div>
+
+      <!-- ANZ -->
+      <div class="seg-card anz">
+        <div class="sc-code anz">ANZ</div>
+        <div class="sc-name">Australia &amp; NZ Metal</div>
+        <div class="sc-tagline">APAC · Ferrous &amp; Zorba · China steel headwind</div>
+        <div class="sc-divider"></div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Revenue</span>
+          <span class="sc-kpi-val">$1,575.5M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg neg">▼ −1.2%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBITDA</span>
+          <span class="sc-kpi-val">$134.2M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg neg">▼ −7.9%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBIT Margin</span>
+          <span class="sc-kpi-chg neg">4.6% ▼ −1.4ppts</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Volume</span>
+          <span class="sc-kpi-chg muted">1,590kt ▼ −0.2%</span>
+        </div>
+        <div class="sc-margin-bar-wrap">
+          <div class="sc-bar-label"><span style="color:var(--red)">Trd Margin 23.8%</span><span style="color:var(--grey)">FY24: 25.7%</span></div>
+          <div class="sc-bar-track"><div class="sc-bar-fill" style="width:48%;background:var(--c-anz)"></div></div>
+        </div>
+      </div>
+      <!-- SAR -->
+      <div class="seg-card sar">
+        <div class="sc-code sar">SAR</div>
+        <div class="sc-name">SA Recycling JV (50%)</div>
+        <div class="sc-tagline">North America · Ferrous + Zorba · Adams family put option risk</div>
+        <div class="sc-divider"></div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Revenue</span>
+        <span class="sc-kpi-val muted">Not disclosed</span>
+			</div>
+			<div class="sc-kpi-row">
+		<span class="sc-kpi-label">&nbsp;</span>
+		<span class="sc-kpi-chg muted">JV — equity basis only</span>
+		</div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBITDA (JV Share)</span>
+          <span class="sc-kpi-val">$120.0M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +17.4%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">JV Net Assets</span>
+		  <span class="sc-kpi-chg warn">$680.1M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Put Option</span>
+          <span class="sc-kpi-chg warn">4.5× EBITDA ⚠</span>
+        </div>
+        <div class="sc-margin-bar-wrap">
+          <div class="sc-bar-label"><span style="color:var(--c-sar)">Zorba mix driving margin</span><span style="color:var(--grey)">FY24: $102.2M</span></div>
+          <div class="sc-bar-track"><div class="sc-bar-fill" style="width:65%;background:var(--c-sar)"></div></div>
+        </div>
+      </div>
+      <!-- SLS -->
+      <div class="seg-card sls">
+        <div class="sc-code sls">SLS</div>
+        <div class="sc-name">Sims Lifecycle Services</div>
+        <div class="sc-tagline">Global · IT Asset Recycling · AI &amp; hyperscaler demand</div>
+        <div class="sc-divider"></div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Revenue</span>
+          <span class="sc-kpi-val">$426.6M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +22.0%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBITDA</span>
+          <span class="sc-kpi-val">$45.9M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +51.0%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBIT Margin</span>
+          <span class="sc-kpi-chg pos">7.6% ▲ +2.5ppts</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Units Repurposed</span>
+          <span class="sc-kpi-chg pos">8.8M ▲ +44.3%</span>
+        </div>
+        <div class="sc-margin-bar-wrap">
+          <div class="sc-bar-label"><span style="color:var(--c-sls)">Trd Margin 56.4%</span><span style="color:var(--grey)">FY24: 56.8%</span></div>
+          <div class="sc-bar-track"><div class="sc-bar-fill" style="width:80%;background:var(--c-sls)"></div></div>
+        </div>
+      </div>
+
+
+
+      <!-- GTO -->
+      <div class="seg-card gto">
+        <div class="sc-code gto">GTO</div>
+        <div class="sc-name">Global Trading Operations</div>
+        <div class="sc-tagline">Global · Bulk cargo brokerage · Ferrous to Turkey/China/SE Asia</div>
+        <div class="sc-divider"></div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">Revenue</span>
+          <span class="sc-kpi-val">$987.2M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ +28.1%</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">EBITDA</span>
+          <span class="sc-kpi-val neg">−$2.4M</span>
+        </div>
+        <div class="sc-kpi-row">
+          <span class="sc-kpi-label">vs FY24</span>
+          <span class="sc-kpi-chg pos">▲ vs −$19.0M FY24</span>
+        </div>
+		<div class="sc-kpi-row">
+			<span class="sc-kpi-label">EBIT Margin</span>
+			<span class="sc-kpi-chg neg">−0.4%</span>
+		</div>
+		<div class="sc-kpi-row">
+			<span class="sc-kpi-label">Trd Margin</span>
+			<span class="sc-kpi-chg muted">1.7% (FY24: 1.1%)</span>
+		</div>
+		<div class="sc-margin-bar-wrap">
+		<div class="sc-bar-label">
+		<span style="color:var(--slate)">Trd Margin 1.7%</span>
+		<span style="color:var(--grey)">FY24: 1.1%</span>
+		</div>
+		<div class="sc-bar-track"><div class="sc-bar-fill" style="width:3%;background:var(--c-gto)"></div></div>
+		</div>
+      </div>
+
+    </div><!-- /seg-strip -->
+
+    <!-- LOWER ZONE -->
+    <div class="lower-zone">
+
+      <!-- CHART 1: EBITDA grouped bars -->
+      <div class="chart-card" style="flex:1.1;">
+        <div class="cc-title">Underlying EBITDA by Segment</div>
+        <div class="cc-sub">A$M · FY25 vs FY24 · ANZ decline visible in red</div>
+        <div class="cc-canvas">
+          <canvas id="ebitdaChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: Trading margin comparison -->
+      <div class="chart-card" style="flex:1.1;">
+        <div class="cc-title">Trading Margin %</div>
+        <div class="cc-sub">FY25 vs FY24 · SAR = JV basis, not disclosed · SLS dominates at 56.4%</div>
+        <div class="cc-canvas">
+          <canvas id="marginChart"></canvas>
+        </div>
+      </div>
+
+      <!-- SUMMARY TABLE -->
+      <div class="table-card">
+        <div class="cc-title">Full Segment Scorecard — FY25</div>
+        <div class="cc-sub">Underlying basis · A$M · EBITDA Δ = vs FY24</div>
+        <table class="seg-table">
+  <thead>
+    <tr>
+      <th>Segment</th>
+      <th>Revenue</th>
+      <th>EBITDA</th>
+      <th>EBITDA Δ</th>
+      <th>EBIT</th>
+      <th>Trd Mgn</th>
+      <th>EBIT Mgn</th>
+      <th>Capex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="seg-pill"><span class="seg-dot" style="background:var(--c-nam)"></span>NAM</span></td>
+      <td>4,503.6</td>
+      <td class="pos">254.3</td>
+      <td class="pos">+102.5</td>
+      <td class="pos">80.1</td>
+      <td>20.9%</td>
+      <td class="pos">1.8%</td>
+      <td>139.1</td>
+    </tr>
+    <tr>
+      <td><span class="seg-pill"><span class="seg-dot" style="background:var(--c-anz)"></span>ANZ</span></td>
+      <td>1,575.5</td>
+      <td class="warn">134.2</td>
+      <td class="neg">−11.5</td>
+      <td class="pos">72.2</td>
+      <td class="neg">23.8%</td>
+      <td class="warn">4.6%</td>
+      <td>47.6</td>
+    </tr>
+     <tr>
+      <td><span class="seg-pill"><span class="seg-dot" style="background:var(--c-sar)"></span>SAR JV</span></td>
+      <td class="muted">— JV</td>
+      <td class="pos">120.0</td>
+      <td class="pos">+17.8</td>
+      <td class="pos">120.0</td>
+      <td class="muted">n/a</td>
+      <td class="muted">n/a</td>
+      <td class="muted">—</td>
+    </tr>
+	<tr>
+      <td><span class="seg-pill"><span class="seg-dot" style="background:var(--c-sls)"></span>SLS</span></td>
+      <td>426.6</td>
+      <td class="pos">45.9</td>
+      <td class="pos">+15.5</td>
+      <td class="pos">32.6</td>
+      <td class="pos">56.4%</td>
+      <td class="pos">7.6%</td>
+      <td>12.4</td>
+    </tr>
+       <tr>
+      <td><span class="seg-pill"><span class="seg-dot" style="background:var(--c-gto)"></span>GTO</span></td>
+      <td>987.2</td>
+      <td class="neg">−2.4</td>
+      <td class="pos">+16.6</td>
+      <td class="neg">−3.5</td>
+      <td class="muted">1.7%</td>
+      <td class="neg">−0.4%</td>
+      <td class="muted">—</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Group Total</td>
+      <td>7,494.0</td>
+      <td>430.0</td>
+      <td class="pos">+139.7</td>
+      <td>174.9</td>
+      <td>21.0%</td>
+      <td>2.3%</td>
+      <td>199.3</td>
+    </tr>
+  </tfoot>
+</table>
+      </div>
+
+    </div><!-- /lower-zone -->
+
+  </div><!-- /content -->
+
+  <!-- PAGE NAV -->
+  <nav class="page-nav">
+    <span class="nav-label">Navigate →</span>
+    <a class="nav-btn" href="sims-fy25-page1.html">P1 · Executive Snapshot</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page2.html">P2 · Strategic Insights</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn active" href="sims-fy25-page3.html">P3 · Segment Performance</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page4.html">P4 · Market Exposure</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page5.html">P5 · Financial Position</a>
+    <div class="nav-sep"></div>
+    <a class="nav-btn" href="sims-fy25-page6.html">P6 · Outlook &amp; ESG</a>
+  </nav>
+
+  <!-- ── PAGE FOOTER ── -->
+  <footer class="page-footer">
+    <span class="pf-left">
+  Prepared by <span class="author-name">Tayyab Siddique</span> · Sims Limited FY25 Executive Dashboard
+	</span>
+    <span class="pf-centre">PAGE 3 OF 6 &nbsp;·&nbsp; SEGMENT PERFORMANCE</span>
+    <span class="pf-right">All figures A$M unless stated &nbsp;·&nbsp; Continuing operations basis &nbsp;·&nbsp; Source: FY25 Audited Annual Report</span>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 10;
+Chart.defaults.color = '#8898AA';
+Chart.defaults.plugins.legend.display = false;
+Chart.defaults.plugins.tooltip.backgroundColor = '#0D2B4E';
+Chart.defaults.plugins.tooltip.titleFont = { family: "'Syne',sans-serif", weight:'700', size:11 };
+Chart.defaults.plugins.tooltip.bodyFont  = { family: "'JetBrains Mono',monospace", size:10 };
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 6;
+
+/* ── CHART 1: EBITDA GROUPED BAR ── */
+(function(){
+  const ctx = document.getElementById('ebitdaChart');
+const segs   = ['NAM','ANZ','SAR','SLS','GTO'];
+const fy25   = [254.3, 134.2, 120.0, 45.9, -2.4];
+const fy24   = [151.8, 145.7, 102.2, 30.4, -19.0];
+const colors25 = [
+  'rgba(46,127,170,0.88)',
+  'rgba(184,50,50,0.88)',
+  'rgba(200,147,42,0.88)',
+  'rgba(109,63,187,0.88)',
+  'rgba(95,127,154,0.70)',
+];
+const colors24 = [
+  'rgba(46,127,170,0.22)',
+  'rgba(184,50,50,0.22)',
+  'rgba(200,147,42,0.22)',
+  'rgba(109,63,187,0.22)',
+  'rgba(95,127,154,0.22)',
+];
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: segs,
+      datasets: [
+        { label:'FY25', data: fy25, backgroundColor: colors25, borderRadius: 4, borderSkipped: false },
+        { label:'FY24', data: fy24, backgroundColor: colors24, borderRadius: 4, borderSkipped: false },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true, position: 'top', align: 'end',
+          labels: {
+            boxWidth: 10, boxHeight: 10,
+            font: { size: 9 }, color: '#8898AA', padding: 8,
+            generateLabels: () => [
+              { text:'FY25', fillStyle:'rgba(46,127,170,0.9)', strokeStyle:'transparent' },
+              { text:'FY24', fillStyle:'rgba(46,127,170,0.25)', strokeStyle:'transparent' },
+            ]
+          }
+        },
+        tooltip: {
+          callbacks: { label: c => ` ${c.dataset.label}: $${c.parsed.y.toFixed(1)}M` }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { font: { size: 10, weight:'600' }, color: '#8898AA' }
+        },
+       y: {
+			grid: { display: false },
+			border: { display: true, color: '#EEF1F5' },
+			ticks: {
+			font: { size: 9, family:"'JetBrains Mono',monospace" },
+			color: '#8898AA',
+			callback: v => '$' + v + 'M',
+			maxTicksLimit: 5,
+			},
+		min: -30,
+		max: 290,
+		}
+      }
+    }
+  });
+})();
+
+/* ── CHART 2: TRADING MARGIN HORIZONTAL BAR ── */
+// REPLACE entire (function(){ ... })(); for marginChart WITH:
+(function(){
+  const ctx = document.getElementById('marginChart');
+ const segs  = ['NAM','ANZ','SAR','SLS','GTO'];
+const fy25  = [20.9, 23.8, null, 56.4, 1.7];
+const fy24  = [17.5, 25.7, null, 56.8, 1.1];
+const colors = [
+  'rgba(46,127,170,0.88)',
+  'rgba(184,50,50,0.88)',
+  'rgba(200,147,42,0.18)',   // SAR — very faint gold, signals "exists but N/A"
+  'rgba(109,63,187,0.88)',
+  'rgba(95,127,154,0.70)',
+];
+const colors24 = [
+  'rgba(46,127,170,0.22)',
+  'rgba(184,50,50,0.22)',
+  'rgba(200,147,42,0.10)',
+  'rgba(109,63,187,0.22)',
+  'rgba(95,127,154,0.22)',
+];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: segs,
+      datasets: [
+        { label:'FY25', data: fy25, backgroundColor: colors,   borderRadius: 4, borderSkipped: false },
+        { label:'FY24', data: fy24, backgroundColor: colors24, borderRadius: 4, borderSkipped: false },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true, position: 'top', align: 'end',
+          labels: {
+            boxWidth: 10, boxHeight: 10,
+            font: { size: 9 }, color: '#8898AA', padding: 8,
+            generateLabels: () => [
+              { text:'FY25', fillStyle:'rgba(109,63,187,0.85)', strokeStyle:'transparent' },
+              { text:'FY24', fillStyle:'rgba(109,63,187,0.2)',  strokeStyle:'transparent' },
+            ]
+          }
+        },
+        tooltip: {
+		callbacks: {
+		label: c => {
+		if (c.dataIndex === 2) return ' SAR: JV basis — not disclosed';
+			return ` ${c.dataset.label}: ${c.parsed.y.toFixed(1)}%`;
+		}
+		}
+		}
+      },
+      scales: {
+        x: {
+          grid:   { display: false },
+          border: { display: false },
+          ticks:  { font: { size: 10, weight:'600' }, color: '#8898AA' }
+        },
+        y: {
+          grid:   { display: false },
+          border: { display: true, color: '#EEF1F5' },
+          min: 0,
+          max: 65,
+          ticks: {
+            font: { size: 9, family:"'JetBrains Mono',monospace" },
+            color: '#8898AA',
+            stepSize: 10,
+            callback: v => v + '%',
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
